@@ -33,7 +33,7 @@ class SelectPicture extends React.Component {
   }
 
   render() {
-    const { photo } = this.state
+    const { photo } = this.state;
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         {photo && (

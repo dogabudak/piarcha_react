@@ -9,6 +9,7 @@ import axiosMiddleware from 'redux-axios-middleware';
 import reducer from './redux/cityList/reducer';
 // import citySelect from './components/selectCity/selectCityScreen';
 import SelectPicture from './components/utilities/selectPicture';
+import Geolocation from '@react-native-community/geolocation';
 
 const client = axios.create({
   baseURL: 'http://localhost:3019',
@@ -16,6 +17,8 @@ const client = axios.create({
 });
 
 const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
+
+Geolocation.getCurrentPosition(info => console.log(info));
 
 export default class App extends Component {
   render() {
