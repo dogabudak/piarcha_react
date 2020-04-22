@@ -4,8 +4,17 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
+import {Button, StyleSheet, View, TextInput} from 'react-native';
+import {login} from '../../redux/login/reducer';
+import {connect} from 'react-redux';
 
-class Login extends Component {
+class Login extends Component<> {
+  state = {
+    username: null,
+    password: null,
+    login: null,
+  };
+
   googleSignIn = async () => {
     GoogleSignin.configure({
       iosClientId:
@@ -30,13 +39,58 @@ class Login extends Component {
   };
   render() {
     return (
-      <GoogleSigninButton
-        style={{width: 192, height: 48}}
-        size={GoogleSigninButton.Size.Wide}
-        color={GoogleSigninButton.Color.Dark}
-        onPress={this.googleSignIn}
-      />
+      <View style={styles.container}>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={text => this.setState({username: text})}
+          value={this.state.username}
+          maxLength={40}
+        />
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          onChangeText={text => this.setState({password: text})}
+          value={this.state.password}
+          maxLength={40}
+        />
+        <Button
+          title="Login"
+          onPress={() => {
+            console.log('a');
+          }}
+        />
+        <Button
+          title="Create a New Profile! "
+          onPress={() => {
+            console.log('a');
+          }}
+        />
+        <GoogleSigninButton
+          style={{width: 192, height: 48}}
+          size={GoogleSigninButton.Size.Wide}
+          color={GoogleSigninButton.Color.Dark}
+          onPress={this.googleSignIn}
+        />
+      </View>
     );
   }
 }
-export default Login;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    marginTop: 50,
+  },
+});
+const mapStateToProps = state => {
+  return {
+    login: state.login,
+  };
+};
+const mapDispatchToProps = {
+  login,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
