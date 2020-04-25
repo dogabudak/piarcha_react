@@ -2,7 +2,6 @@ export const SAVE_CURRENT_LOCATION = 'GET_AVAILABLE_CITIES_LOAD';
 export const SAVE_CURRENT_LOCATION_SUCCESS = 'SAVE_CURRENT_LOCATION_SUCCESS';
 export const SAVE_CURRENT_LOCATION_FAIL = 'SAVE_CURRENT_LOCATION_FAIL';
 
-
 export default function reducer(
   state = {availableCities: [], futuredCities: []},
   action,

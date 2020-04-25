@@ -12,7 +12,6 @@ class Login extends Component<> {
   state = {
     username: null,
     password: null,
-    login: null,
   };
 
   googleSignIn = async () => {
@@ -41,27 +40,49 @@ class Login extends Component<> {
     return (
       <View style={styles.container}>
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{
+            height: 50,
+            borderColor: 'silver',
+            borderWidth: 5,
+            margin: 5,
+            textAlign: 'center',
+            backgroundColor: 'white',
+            textDecorationStyle: 'solid',
+            textDecoration: 'bold',
+            letterSpacing: 2,
+          }}
           onChangeText={text => this.setState({username: text})}
           value={this.state.username}
           maxLength={40}
         />
         <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          style={{
+            height: 50,
+            borderColor: 'silver',
+            borderWidth: 5,
+            margin: 5,
+            textAlign: 'center',
+            backgroundColor: 'lightwhite',
+            textDecorationStyle: 'solid',
+            textDecoration: 'bold',
+            letterSpacing: 2,
+          }}
           onChangeText={text => this.setState({password: text})}
           value={this.state.password}
           maxLength={40}
         />
         <Button
+          style={{backgroundColor: 'green'}}
           title="Login"
           onPress={() => {
-            console.log('a');
+            this.props.login(this.state.username, this.state.password);
           }}
         />
         <Button
+          style={{backgroundColor: 'green'}}
           title="Create a New Profile! "
           onPress={() => {
-            console.log('a');
+            this.props.navigation.navigate('Main');
           }}
         />
         <GoogleSigninButton
@@ -83,7 +104,7 @@ const styles = StyleSheet.create({
 });
 const mapStateToProps = state => {
   return {
-    login: state.login,
+    token: state,
   };
 };
 const mapDispatchToProps = {

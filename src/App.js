@@ -1,15 +1,11 @@
+import 'react-native-gesture-handler';
 import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
-
-import reducer from './redux/cityList/reducer';
-// import citySelect from './components/selectCity/selectCityScreen';
-// import SelectPicture from './components/utilities/selectPicture';
-import Login from './components/login/login';
-import Geolocation from '@react-native-community/geolocation';
+import reducer from './redux/index';
+import MainStackNavigator from './pages/MainStackNavigator';
 
 const store = createStore(
   reducer,
@@ -31,24 +27,13 @@ const store = createStore(
   ),
 );
 
-Geolocation.getCurrentPosition(info => console.log(info));
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <Login />
-        </View>
+        <MainStackNavigator />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50,
-  },
-});
