@@ -48,7 +48,6 @@ class Login extends Component<> {
             textAlign: 'center',
             backgroundColor: 'white',
             textDecorationStyle: 'solid',
-            textDecoration: 'bold',
             letterSpacing: 2,
           }}
           onChangeText={text => this.setState({username: text})}
@@ -62,9 +61,7 @@ class Login extends Component<> {
             borderWidth: 5,
             margin: 5,
             textAlign: 'center',
-            backgroundColor: 'lightwhite',
             textDecorationStyle: 'solid',
-            textDecoration: 'bold',
             letterSpacing: 2,
           }}
           onChangeText={text => this.setState({password: text})}
@@ -75,7 +72,9 @@ class Login extends Component<> {
           style={{backgroundColor: 'green'}}
           title="Login"
           onPress={() => {
+            // TODO not evaluating the result
             this.props.login(this.state.username, this.state.password);
+            this.props.navigation.navigate('Main');
           }}
         />
         <Button

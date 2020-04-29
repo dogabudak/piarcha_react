@@ -2,17 +2,14 @@ export const LOGIN = 'LOGIN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 
-export default function reducer(
-  state = {token: null, username: null, password: null, error: null},
-  action,
-) {
+export default function reducer(state = {token: null}, action) {
   switch (action.type) {
     case LOGIN:
-      console.log('STATE');
       return {...state, loading: true};
     case LOGIN_SUCCESS:
+      console.log(action.payload);
       if (action.payload.data.authenticated) {
-        return {...state, loading: false, token: action.payload};
+        return {...state, loading: false, token: action.payload.data.token};
       } else {
         return {
           ...state,

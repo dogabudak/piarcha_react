@@ -23,10 +23,15 @@ const store = createStore(
           responseType: 'json',
         }),
       },
+      userUpdate: {
+        client: axios.create({
+          baseURL: 'http://localhost:3020',
+          responseType: 'json',
+        }),
+      },
     }),
   ),
 );
-
 
 export default class App extends Component {
   render() {

@@ -2,11 +2,14 @@ import React, {Component} from 'react';
 
 import {Text, StyleSheet, View} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
+import {setCurrentLocation} from '../../redux/geoLocation/reducer';
+import {connect} from 'react-redux';
 
 class Main extends Component<> {
   componentDidMount(): void {
     Geolocation.getCurrentPosition(info => {
-      console.log('current position', info);
+      console.log(this.props)
+      this.props.setCurrentLocation(info);
     });
   }
 
@@ -26,4 +29,17 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+const mapStateToProps = state => {
+  return {
+    currentLocation: state,
+  };
+};
+
+const mapDispatchToProps = {
+  setCurrentLocation,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Main);

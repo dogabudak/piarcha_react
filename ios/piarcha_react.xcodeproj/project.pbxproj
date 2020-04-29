@@ -16,6 +16,7 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* piarcha_reactTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* piarcha_reactTests.m */; };
+		75AE39CE2459B0DB0036AFFD /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75AE39CD2459B0DB0036AFFD /* MapKit.framework */; };
 		94FAE448213D9403CECF789E /* libPods-piarcha_react.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */; };
 		A26B215E6BAFB0FA3A5311F8 /* libPods-piarcha_react-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E626592E5C798D51BAAE45C4 /* libPods-piarcha_react-tvOSTests.a */; };
 		B120286A4B4577231F9160EB /* libPods-piarcha_react-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 485E4539BC55EE6BD3718986 /* libPods-piarcha_react-tvOS.a */; };
@@ -61,6 +62,8 @@
 		52E5317736E708C367792DF0 /* Pods-piarcha_react-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-piarcha_react-tvOSTests/Pods-piarcha_react-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		54F2336E0F652E0BC616561F /* Pods-piarcha_reactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_reactTests.debug.xcconfig"; path = "Target Support Files/Pods-piarcha_reactTests/Pods-piarcha_reactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		73F871B41F73D5A5512507A0 /* libPods-piarcha_reactTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_reactTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		75AE39CC2459B0CC0036AFFD /* piarcha_react.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = piarcha_react.entitlements; path = piarcha_react/piarcha_react.entitlements; sourceTree = "<group>"; };
+		75AE39CD2459B0DB0036AFFD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E626592E5C798D51BAAE45C4 /* libPods-piarcha_react-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -82,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75AE39CE2459B0DB0036AFFD /* MapKit.framework in Frameworks */,
 				94FAE448213D9403CECF789E /* libPods-piarcha_react.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +129,7 @@
 		13B07FAE1A68108700A75B9A /* piarcha_react */ = {
 			isa = PBXGroup;
 			children = (
+				75AE39CC2459B0CC0036AFFD /* piarcha_react.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -139,6 +144,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75AE39CD2459B0DB0036AFFD /* MapKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */,
@@ -645,6 +651,7 @@
 			baseConfigurationReference = 30CB15FAF6949E5FF73195BF /* Pods-piarcha_react.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = piarcha_react/piarcha_react.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				INFOPLIST_FILE = piarcha_react/Info.plist;
@@ -665,6 +672,7 @@
 			baseConfigurationReference = 3E5F90D94E0D4CD94591CFE3 /* Pods-piarcha_react.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = piarcha_react/piarcha_react.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = piarcha_react/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
