@@ -1,5 +1,7 @@
 import Main from './main/main';
 import Login from './login/login';
+import Register from './register/register';
+
 import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
@@ -13,6 +15,7 @@ function MainStackNavigator() {
       <Stack.Navigator>
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
   );

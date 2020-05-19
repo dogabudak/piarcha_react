@@ -30,8 +30,17 @@
 				<string>com.googleusercontent.apps.747114552067-367k5gh5d7asb2eu5ras6flbpfg8p5vm</string>
 			</array>
 		</dict>
-		<dict/>
+		      <dict>
+              <key>CFBundleURLSchemes</key>
+              <array>
+                <string>fb3194283183955297</string>
+              </array>
+              </dict>
 	</array>
+    <key>FacebookAppID</key>
+    <string>3194283183955297</string>
+    <key>FacebookDisplayName</key>
+    <string>piarcha_react</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>

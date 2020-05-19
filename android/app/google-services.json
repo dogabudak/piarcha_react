@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "747114552067",
+    "firebase_url": "https://piarka-1586097078709.firebaseio.com",
+    "project_id": "piarka-1586097078709",
+    "storage_bucket": "piarka-1586097078709.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747114552067:android:0a182182ea19552684e736",
+        "android_client_info": {
+          "package_name": "com.piarcha_react"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747114552067-ad6p5rpkvh7f2l8a6qoefl6803m2sf46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.piarcha_react",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "747114552067-bl0orl0jmh44fv6abl534i41q6cvu1ng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7pAXsGKC5q-ZNcrWuv8guYwfquG9saac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747114552067-bl0orl0jmh44fv6abl534i41q6cvu1ng.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747114552067-367k5gh5d7asb2eu5ras6flbpfg8p5vm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.piarka.piarka"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747114552067:android:4eb57159403c0aa284e736",
+        "android_client_info": {
+          "package_name": "com.piarka.piarka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747114552067-i3mq2qlg96mo3c9liffc2qf6tpkp43kk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.piarka.piarka",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "747114552067-bl0orl0jmh44fv6abl534i41q6cvu1ng.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7pAXsGKC5q-ZNcrWuv8guYwfquG9saac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747114552067-bl0orl0jmh44fv6abl534i41q6cvu1ng.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "747114552067-367k5gh5d7asb2eu5ras6flbpfg8p5vm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.piarka.piarka"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

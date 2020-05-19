@@ -7,7 +7,6 @@ export default function reducer(state = {token: null}, action) {
     case LOGIN:
       return {...state, loading: true};
     case LOGIN_SUCCESS:
-      console.log(action.payload);
       if (action.payload.data.authenticated) {
         return {...state, loading: false, token: action.payload.data.token};
       } else {
