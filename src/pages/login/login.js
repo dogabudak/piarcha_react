@@ -75,6 +75,7 @@ class Login extends Component<> {
             textDecorationStyle: 'solid',
             letterSpacing: 2,
           }}
+          secureTextEntry={true}
           onChangeText={text => this.setState({password: text})}
           value={this.state.password}
           maxLength={40}
@@ -87,14 +88,12 @@ class Login extends Component<> {
           }}
         />
         <Button
-          style={{backgroundColor: 'green'}}
           title="Continiue without login"
           onPress={() => {
             this.props.navigation.navigate('Main');
           }}
         />
         <Button
-          style={{backgroundColor: 'green'}}
           title="Create a New Profile! "
           onPress={() => {
             this.props.navigation.navigate('Main');
