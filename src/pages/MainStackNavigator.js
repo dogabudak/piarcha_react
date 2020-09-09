@@ -1,5 +1,6 @@
 import Main from './main/main';
 import Login from './login/login';
+import Start from './start/start';
 import Register from './register/register';
 
 import * as React from 'react';
@@ -13,6 +14,7 @@ function MainStackNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Register" component={Register} />
