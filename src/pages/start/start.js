@@ -5,7 +5,7 @@ import {
   statusCodes,
 } from '@react-native-community/google-signin';
 import {Button, Dimensions, Image, StyleSheet, View} from 'react-native';
-import {LoginButton, AccessToken, LoginManager} from 'react-native-fbsdk';
+import {LoginButton, AccessToken} from 'react-native-fbsdk';
 
 const {height} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
@@ -79,7 +79,7 @@ class Start extends Component<> {
           <Button
             title="Sign Up For Free"
             onPress={() => {
-              this.props.navigation.navigate('Main');
+              this.props.navigation.navigate('Register');
             }}
           />
           <Button
@@ -93,6 +93,12 @@ class Start extends Component<> {
             title="Continue without login"
             onPress={() => {
               this.props.navigation.navigate('Main');
+            }}
+          />
+          <Button
+            title="Tutorial"
+            onPress={() => {
+              this.props.navigation.navigate('Tutorial');
             }}
           />
         </View>
