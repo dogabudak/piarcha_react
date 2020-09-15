@@ -3,6 +3,7 @@ import Login from './login/login';
 import Start from './start/start';
 import Register from './register/register';
 import Tutorial from './tutorial/tutorial';
+import Profile from './profile/profile';
 
 import * as React from 'react';
 
@@ -20,6 +21,7 @@ function MainStackNavigator() {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
