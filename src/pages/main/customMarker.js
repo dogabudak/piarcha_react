@@ -6,7 +6,6 @@ import {StyleSheet, View} from 'react-native';
 const propTypes = {
   children: PropTypes.node.isRequired,
 };
-// TODO react ile bisey yaz ( herhangi bir ürününe react ile bir sayfa modül) ( piarka’ya react’tan bişeyler barındıran bir küçük fonksiyon bile yazsan yeter)
 
 class CustomCallout extends React.Component {
   render() {
