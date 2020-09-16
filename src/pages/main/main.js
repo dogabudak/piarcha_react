@@ -12,7 +12,7 @@ import MapView, {
   CalloutSubview,
   Marker,
   PROVIDER_GOOGLE,
-} from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
+} from 'react-native-maps';
 import CustomCallout from './customMarker';
 
 class Main extends Component<> {
@@ -26,7 +26,7 @@ class Main extends Component<> {
     return (
       <View style={styles.container}>
         <MapView
-          provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+          provider={PROVIDER_GOOGLE}
           style={styles.map}
           region={{
             latitude: 41.0094092,

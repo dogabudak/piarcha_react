@@ -7,7 +7,7 @@ import {multiClientMiddleware} from 'redux-axios-middleware';
 import reducer from './redux/index';
 import MainStackNavigator from './pages/MainStackNavigator';
 
-const store = createStore(
+export const store = createStore(
   reducer,
   applyMiddleware(
     multiClientMiddleware({
