@@ -5,6 +5,7 @@ const {height} = Dimensions.get('window');
 
 import Geolocation from '@react-native-community/geolocation';
 import {setCurrentLocation} from '../../redux/geoLocation/reducer';
+import {getCoordinates} from '../../redux/cityList/reducer';
 import {connect} from 'react-redux';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import MapView, {
@@ -20,9 +21,11 @@ class Main extends Component<> {
     Geolocation.getCurrentPosition(info => {
       this.props.setCurrentLocation(info);
     });
+    this.props.getCoordinates();
   }
 
   render() {
+    console.log(this.props.coordinates);
     return (
       <View style={styles.container}>
         <MapView
@@ -36,8 +39,8 @@ class Main extends Component<> {
           }}>
           <Marker
             coordinate={{
-              latitude: 41.008545,
-              longitude: 28.9780613,
+              latitude: this.props.coordinates?.coordinates[0].x,
+              longitude: this.props.coordinates?.coordinates[0].y,
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
@@ -60,7 +63,7 @@ class Main extends Component<> {
                 height: 140,
               }}>
               <CustomCallout>
-                <Text>{'Ayasofya müzesi'}</Text>
+                <Text>{this.props.coordinates?.coordinates[0].name}</Text>
                 <CalloutSubview onPress={() => this._panel.show()}>
                   <Text>Details</Text>
                 </CalloutSubview>
@@ -133,12 +136,14 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    currentLocation: state,
+    currentLocation: state.currentLocation.currentLocation,
+    coordinates: state.cityList.coordinates,
   };
 };
 
 const mapDispatchToProps = {
   setCurrentLocation,
+  getCoordinates,
 };
 
 export default connect(

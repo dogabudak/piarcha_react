@@ -9,7 +9,6 @@ class citySelect extends Component {
     this.props.getAvailableCities();
   }
   renderItem = ({item}) => {
-    console.log(item);
     return (
       <View style={styles.item}>
         <Text>{item}</Text>
