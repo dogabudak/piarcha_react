@@ -6,6 +6,7 @@ import axios from 'axios';
 import {multiClientMiddleware} from 'redux-axios-middleware';
 import reducer from './redux/index';
 import MainStackNavigator from './pages/MainStackNavigator';
+import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
 export const store = createStore(
   reducer,
@@ -32,12 +33,22 @@ export const store = createStore(
     }),
   ),
 );
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: 'tomato',
+    accent: 'yellow',
+  },
+};
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <MainStackNavigator />
+        <PaperProvider theme={theme}>
+          <MainStackNavigator />
+        </PaperProvider>
       </Provider>
     );
   }

@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import {getAvailableCities} from '../../redux/cityList/reducer';
 
-class citySelect extends Component {
+class destination extends Component {
   componentDidMount() {
     this.props.getAvailableCities();
   }
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => {
   return {
-    cities: state.availableCities.cities,
+    cities: state?.availableCities?.cities || [],
   };
 };
 
@@ -54,4 +54,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(citySelect);
+)(destination);

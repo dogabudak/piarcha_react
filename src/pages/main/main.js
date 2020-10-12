@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {Button, Dimensions, StyleSheet, Text, View} from 'react-native';
 const {height} = Dimensions.get('window');
+import {FAB, Portal} from 'react-native-paper';
 
 import Geolocation from '@react-native-community/geolocation';
 import {setCurrentLocation} from '../../redux/geoLocation/reducer';
@@ -16,13 +17,24 @@ import MapView, {
 } from 'react-native-maps';
 import CustomCallout from './customMarker';
 
-class Main extends Component<> {
+interface State {
+  isMenuOpen: boolean;
+}
+
+class Main extends Component<{}, State> {
+  constructor() {
+    super();
+    this.state = {
+      isMenuOpen: false,
+    };
+  }
   componentDidMount(): void {
     Geolocation.getCurrentPosition(info => {
       this.props.setCurrentLocation(info);
     });
     this.props.getCoordinates();
   }
+  toggleMenu = () => this.setState({isMenuOpen: !this.state.isMenuOpen});
 
   render() {
     console.log(this.props.coordinates);
@@ -102,6 +114,42 @@ class Main extends Component<> {
             <Text>Here is the content inside panel</Text>
           </View>
         </SlidingUpPanel>
+        <Portal>
+          <FAB.Group
+            small
+            open={this.state.isMenuOpen}
+            icon={
+              this.state.isMenuOpen ? 'calendar-today' : 'reorder-horizontal'
+            }
+            actions={[
+              {
+                icon: 'map',
+                label: 'Destination',
+                onPress: () => {
+                  this.props.navigation.navigate('Destination');
+                },
+              },
+              {
+                icon: 'account',
+                label: 'Profile',
+                onPress: () => console.log('Pressed Profile'),
+              },
+              {
+                icon: 'cog',
+                label: 'Settings',
+                onPress: () => console.log('Pressed Settings'),
+              },
+            ]}
+            onStateChange={() => {
+              this.toggleMenu();
+            }}
+            onPress={() => {
+              if (this.state.isMenuOpen) {
+                // do something if the speed dial is open
+              }
+            }}
+          />
+        </Portal>
       </View>
     );
   }
@@ -131,6 +179,12 @@ const styles = StyleSheet.create({
     marginTop: -50,
     zIndex: 1,
     alignItems: 'center',
+  },
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 30,
+    bottom: -90,
   },
 });
 
