@@ -137,7 +137,9 @@ class Main extends Component<{}, State> {
               {
                 icon: 'cog',
                 label: 'Settings',
-                onPress: () => console.log('Pressed Settings'),
+                onPress: () => {
+                  this.props.navigation.navigate('Settings');
+                },
               },
             ]}
             onStateChange={() => {
