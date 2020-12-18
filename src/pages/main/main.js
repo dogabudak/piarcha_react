@@ -37,7 +37,7 @@ class Main extends Component<{}, State> {
   toggleMenu = () => this.setState({isMenuOpen: !this.state.isMenuOpen});
 
   render() {
-    console.log(this.props.coordinates);
+    // TODO bu kordinatlar loop olsun [0]'dan aliyor
     return (
       <View style={styles.container}>
         <MapView
@@ -56,6 +56,9 @@ class Main extends Component<{}, State> {
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
+            image={require(`../../images/icons/${
+              this.props.coordinates?.coordinates[0].type
+            }.png`)}
             ref={ref => {
               this.marker2 = ref;
             }}>
