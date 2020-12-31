@@ -56,9 +56,12 @@ class Main extends Component<{}, State> {
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
+            //TODO fix this 
+            /*
             image={require(`../../images/icons/${
               this.props.coordinates?.coordinates[0].type
             }.png`)}
+             */
             ref={ref => {
               this.marker2 = ref;
             }}>
