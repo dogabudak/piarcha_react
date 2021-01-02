@@ -32,7 +32,7 @@ class Main extends Component<{}, State> {
     Geolocation.getCurrentPosition(info => {
       this.props.setCurrentLocation(info);
     });
-    this.props.getCoordinates();
+    this.props.getCoordinates('Istanbul');
   }
   toggleMenu = () => this.setState({isMenuOpen: !this.state.isMenuOpen});
 
@@ -56,11 +56,9 @@ class Main extends Component<{}, State> {
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
-            //TODO fix this 
+            //TODO fix this
             /*
-            image={require(`../../images/icons/${
-              this.props.coordinates?.coordinates[0].type
-            }.png`)}
+            image={require(`../../images/icons/church.png`)}
              */
             ref={ref => {
               this.marker2 = ref;

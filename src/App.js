@@ -12,7 +12,7 @@ export const store = createStore(
   reducer,
   applyMiddleware(
     multiClientMiddleware({
-      cityList: {
+      destinations: {
         client: axios.create({
           baseURL: 'http://localhost:3019',
           responseType: 'json',
