@@ -16,9 +16,12 @@ import MapView, {
   PROVIDER_GOOGLE,
 } from 'react-native-maps';
 import CustomCallout from './customMarker';
+import getClosestCoordinate from '../../utilities/getClosestCoordinates';
 
 interface State {
   isMenuOpen: boolean;
+  currentLatitute: string;
+  currentLongtitute: string;
 }
 
 class Main extends Component<{}, State> {
@@ -26,18 +29,25 @@ class Main extends Component<{}, State> {
     super();
     this.state = {
       isMenuOpen: false,
+      currentLatitute: '',
+      currentLongtitute: '',
     };
   }
   componentDidMount(): void {
-    Geolocation.getCurrentPosition(info => {
-      this.props.setCurrentLocation(info);
+    Geolocation.getCurrentPosition(location => {
+      this.setState({
+        currentLatitute: location.coords.latitude,
+        currentLongtitute: location.coords.longitude,
+      });
+      this.props.setCurrentLocation(location);
     });
+    // TODO this shouldnt come from only instanbul but rather we should have a function which detect which city you are in currently
     this.props.getCoordinates('Istanbul');
   }
   toggleMenu = () => this.setState({isMenuOpen: !this.state.isMenuOpen});
 
   render() {
-    // TODO bu kordinatlar loop olsun [0]'dan aliyor
+    // TODO instead of getting the first corrdinate [0] make this as a loop
     return (
       <View style={styles.container}>
         <MapView
@@ -56,10 +66,7 @@ class Main extends Component<{}, State> {
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
-            //TODO fix this
-            /*
-            image={require(`../../images/icons/church.png`)}
-             */
+            image={require('../../images/icons/church.png')}
             ref={ref => {
               this.marker2 = ref;
             }}>
@@ -97,7 +104,16 @@ class Main extends Component<{}, State> {
           <Button
             title="Go to Next attraction ! "
             onPress={() => {
-              console.log();
+              const {currentLatitute, currentLongtitute} = this.state;
+              const closestAttraction = getClosestCoordinate(
+                {
+                  x: currentLatitute,
+                  y: currentLongtitute,
+                },
+                this.props.coordinates?.coordinates,
+              );
+              //TODO do something with this value
+              console.log('closest attraction is => ', closestAttraction);
             }}
           />
         </View>
