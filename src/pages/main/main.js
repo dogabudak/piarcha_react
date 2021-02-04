@@ -17,6 +17,7 @@ import MapView, {
 } from 'react-native-maps';
 import CustomCallout from './customMarker';
 import getClosestCoordinate from '../../utilities/getClosestCoordinates';
+import Images from '../../images/icons/church.png';
 
 interface State {
   isMenuOpen: boolean;
@@ -66,7 +67,7 @@ class Main extends Component<{}, State> {
             }}
             calloutOffset={{x: -8, y: 28}}
             calloutAnchor={{x: 0.5, y: 0.4}}
-            image={require('../../images/icons/church.png')}
+            image={Images}
             ref={ref => {
               this.marker2 = ref;
             }}>
