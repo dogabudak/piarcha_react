@@ -1,13 +1,11 @@
-import React, {Component} from 'react';
-
+import React, {useState, useEffect} from 'react';
+import {useDispatch} from 'react-redux';
 import {Button, Dimensions, StyleSheet, Text, View} from 'react-native';
 const {height} = Dimensions.get('window');
 import {FAB, Portal} from 'react-native-paper';
-
 import Geolocation from '@react-native-community/geolocation';
 import {setCurrentLocation} from '../../redux/geoLocation/reducer';
 import {getCoordinates} from '../../redux/cityList/reducer';
-import {connect} from 'react-redux';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 import MapView, {
   Callout,
@@ -18,165 +16,169 @@ import MapView, {
 import CustomCallout from './customMarker';
 import getClosestCoordinate from '../../utilities/getClosestCoordinates';
 import Images from '../../images/icons/church.png';
+import {useNavigation} from '@react-navigation/native';
 
-interface State {
-  isMenuOpen: boolean;
-  currentLatitute: string;
-  currentLongtitute: string;
-}
+export const Main = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [currentLatitute, setCurrentLatitute] = useState('');
+  const [currentLongtitute, setCurrentLongtitute] = useState('');
+  const [coordinates, setCoordinates] = useState({
+    coordinates: [{name: '', x: 0, y: 0}],
+  });
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
 
-class Main extends Component<{}, State> {
-  constructor() {
-    super();
-    this.state = {
-      isMenuOpen: false,
-      currentLatitute: '',
-      currentLongtitute: '',
-    };
-  }
-  componentDidMount(): void {
-    Geolocation.getCurrentPosition(location => {
-      this.setState({
-        currentLatitute: location.coords.latitude,
-        currentLongtitute: location.coords.longitude,
-      });
-      this.props.setCurrentLocation(location);
+  useEffect(() => {
+    dispatch(getCoordinates('Istanbul')).then(result => {
+      setCoordinates(result.payload.data);
     });
-    // TODO this shouldnt come from only instanbul but rather we should have a function which detect which city you are in currently
-    this.props.getCoordinates('Istanbul');
-  }
-  toggleMenu = () => this.setState({isMenuOpen: !this.state.isMenuOpen});
+  }, [dispatch]);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  React.useEffect(() => {
+    let interval;
+    const fetchLocation = async () => {
+      interval = setInterval(async () => {
+        Geolocation.getCurrentPosition(location => {
+          setCurrentLatitute(location.coords.latitude);
+          setCurrentLongtitute(location.coords.longitude);
+          dispatch(setCurrentLocation(location));
+        });
+      }, 10000);
 
-  render() {
-    // TODO instead of getting the first corrdinate [0] make this as a loop
-    return (
-      <View style={styles.container}>
-        <MapView
-          provider={PROVIDER_GOOGLE}
-          style={styles.map}
-          region={{
-            latitude: 41.0094092,
-            longitude: 28.9770532,
-            latitudeDelta: 0.015,
-            longitudeDelta: 0.0121,
+      return () => {
+        clearInterval(interval);
+      };
+    };
+    fetchLocation();
+    return () => {
+      clearInterval(interval);
+    };
+  }, [dispatch]);
+
+  return (
+    <View style={styles.container}>
+      <MapView
+        provider={PROVIDER_GOOGLE}
+        style={styles.map}
+        region={{
+          latitude: 41.0094092,
+          longitude: 28.9770532,
+          latitudeDelta: 0.015,
+          longitudeDelta: 0.0121,
+        }}>
+        <Marker
+          coordinate={{
+            latitude: coordinates?.coordinates[0].x,
+            longitude: coordinates?.coordinates[0].y,
+          }}
+          calloutOffset={{x: -8, y: 28}}
+          calloutAnchor={{x: 0.5, y: 0.4}}
+          image={Images}
+          ref={ref => {
+            this.marker2 = ref;
           }}>
-          <Marker
-            coordinate={{
-              latitude: this.props.coordinates?.coordinates[0].x,
-              longitude: this.props.coordinates?.coordinates[0].y,
-            }}
-            calloutOffset={{x: -8, y: 28}}
-            calloutAnchor={{x: 0.5, y: 0.4}}
-            image={Images}
-            ref={ref => {
-              this.marker2 = ref;
-            }}>
-            <Callout
-              alphaHitTest
-              tooltip
-              onPress={e => {
-                if (
-                  e.nativeEvent.action === 'marker-inside-overlay-press' ||
-                  e.nativeEvent.action === 'callout-inside-press'
-                ) {
-                  return;
-                }
-              }}
-              style={{
-                width: 140,
-                height: 140,
-              }}>
-              <CustomCallout>
-                <Text>{this.props.coordinates?.coordinates[0].name}</Text>
-                <CalloutSubview onPress={() => this._panel.show()}>
-                  <Text>Details</Text>
-                </CalloutSubview>
-              </CustomCallout>
-            </Callout>
-          </Marker>
-        </MapView>
-        <View style={styles.buttons}>
-          <Button
-            title="Create a route plan !"
-            onPress={() => {
-              console.log();
-            }}
-          />
-          <Button
-            title="Go to Next attraction ! "
-            onPress={() => {
-              const {currentLatitute, currentLongtitute} = this.state;
-              const closestAttraction = getClosestCoordinate(
-                {
-                  x: currentLatitute,
-                  y: currentLongtitute,
-                },
-                this.props.coordinates?.coordinates,
-              );
-              //TODO do something with this value
-              console.log('closest attraction is => ', closestAttraction);
-            }}
-          />
-        </View>
-        <SlidingUpPanel
-          backdropOpacity={0}
-          draggableRange={{top: height / 1.5, bottom: 0}}
-          containerStyle={styles.container}
-          ref={c => (this._panel = c)}>
-          <View style={styles.content}>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-            <Text>Here is the content inside panel</Text>
-          </View>
-        </SlidingUpPanel>
-        <Portal>
-          <FAB.Group
-            small
-            open={this.state.isMenuOpen}
-            icon={
-              this.state.isMenuOpen ? 'calendar-today' : 'reorder-horizontal'
-            }
-            actions={[
-              {
-                icon: 'map',
-                label: 'Destination',
-                onPress: () => {
-                  this.props.navigation.navigate('Destination');
-                },
-              },
-              {
-                icon: 'account',
-                label: 'Profile',
-                onPress: () => console.log('Pressed Profile'),
-              },
-              {
-                icon: 'cog',
-                label: 'Settings',
-                onPress: () => {
-                  this.props.navigation.navigate('Settings');
-                },
-              },
-            ]}
-            onStateChange={() => {
-              this.toggleMenu();
-            }}
-            onPress={() => {
-              if (this.state.isMenuOpen) {
-                // do something if the speed dial is open
+          <Callout
+            alphaHitTest
+            tooltip
+            onPress={e => {
+              if (
+                e.nativeEvent.action === 'marker-inside-overlay-press' ||
+                e.nativeEvent.action === 'callout-inside-press'
+              ) {
+                return;
               }
             }}
-          />
-        </Portal>
+            style={{
+              width: 140,
+              height: 140,
+            }}>
+            <CustomCallout>
+              <Text>{coordinates?.coordinates[0].name}</Text>
+              <CalloutSubview onPress={() => this._panel.show()}>
+                <Text>Details</Text>
+              </CalloutSubview>
+            </CustomCallout>
+          </Callout>
+        </Marker>
+      </MapView>
+      <View style={styles.buttons}>
+        <Button
+          title="Create a route plan !"
+          onPress={() => {
+            console.log();
+          }}
+        />
+        <Button
+          title="Go to Next attraction ! "
+          onPress={() => {
+            const closestAttraction = getClosestCoordinate(
+              {
+                x: currentLatitute,
+                y: currentLongtitute,
+              },
+              coordinates?.coordinates,
+            );
+            //TODO do something with this value
+            console.log('closest attraction is => ', closestAttraction);
+          }}
+        />
       </View>
-    );
-  }
-}
+      <SlidingUpPanel
+        backdropOpacity={0}
+        draggableRange={{top: height / 1.5, bottom: 0}}
+        containerStyle={styles.container}
+        ref={c => (this._panel = c)}>
+        <View style={styles.content}>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+          <Text>Here is the content inside panel</Text>
+        </View>
+      </SlidingUpPanel>
+      <Portal>
+        <FAB.Group
+          small
+          open={isMenuOpen}
+          icon={isMenuOpen ? 'calendar-today' : 'reorder-horizontal'}
+          actions={[
+            {
+              icon: 'map',
+              label: 'Destination',
+              onPress: () => {
+                navigation.navigate('Destination');
+              },
+            },
+            {
+              icon: 'account',
+              label: 'Profile',
+              onPress: () => console.log('Pressed Profile'),
+            },
+            {
+              icon: 'cog',
+              label: 'Settings',
+              onPress: () => {
+                navigation.navigate('Settings');
+              },
+            },
+          ]}
+          onStateChange={() => {
+            toggleMenu();
+          }}
+          onPress={() => {
+            if (isMenuOpen) {
+            }
+          }}
+        />
+      </Portal>
+    </View>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column-reverse',
@@ -211,19 +213,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = state => {
-  return {
-    currentLocation: state.currentLocation.currentLocation,
-    coordinates: state.cityList.coordinates,
-  };
-};
-
-const mapDispatchToProps = {
-  setCurrentLocation,
-  getCoordinates,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Main);
+export default Main;
