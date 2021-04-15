@@ -165,6 +165,18 @@ export const Main = () => {
                 navigation.navigate('Settings');
               },
             },
+            {
+              icon: 'information-outline',
+              label: 'About',
+              onPress: () => {
+                navigation.navigate('About');
+              },
+            },
+            {
+              icon: 'bug',
+              label: 'Report Problem',
+              onPress: () => console.log('Report Problem'),
+            },
           ]}
           onStateChange={() => {
             toggleMenu();
