@@ -172,11 +172,6 @@ export const Main = () => {
                 navigation.navigate('About');
               },
             },
-            {
-              icon: 'bug',
-              label: 'Report Problem',
-              onPress: () => console.log('Report Problem'),
-            },
           ]}
           onStateChange={() => {
             toggleMenu();
