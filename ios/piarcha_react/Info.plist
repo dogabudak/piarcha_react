@@ -20,7 +20,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.piarka.piarka</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -81,6 +81,8 @@
 	<string>Please enable locatin to use !! </string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Please enable locatin to use !! </string>
+	<key>NSMainNibFile</key>
+	<string>LaunchScreen</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>For saving a photo.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
@@ -114,6 +116,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
