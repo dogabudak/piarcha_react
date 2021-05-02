@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">piarcha_react</string>
+    <string name="facebook_app_id">piarcha_react</string>
 </resources>
