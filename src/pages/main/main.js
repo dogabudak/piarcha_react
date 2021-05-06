@@ -54,7 +54,7 @@ export const Main = () => {
       clearInterval(interval);
     };
   }, [dispatch]);
-
+  // TODO CalloutSubView is not supported by android
   return (
     <View style={styles.container}>
       <MapView
@@ -156,7 +156,9 @@ export const Main = () => {
             {
               icon: 'account',
               label: 'Profile',
-              onPress: () => console.log('Pressed Profile'),
+              onPress: () => {
+                navigation.navigate('Profile');
+              },
             },
             {
               icon: 'cog',

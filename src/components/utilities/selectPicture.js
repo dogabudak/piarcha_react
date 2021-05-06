@@ -35,7 +35,10 @@ class SelectPicture extends React.Component {
   render() {
     const {photo} = this.state;
     return (
-      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <View
+        style={{
+          margin: 5,
+        }}>
         {photo && (
           <Image source={this.state.photo} style={{width: 300, height: 300}} />
         )}
