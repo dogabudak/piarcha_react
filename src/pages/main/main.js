@@ -23,7 +23,7 @@ export const Main = () => {
   const [currentLatitute, setCurrentLatitute] = useState('');
   const [currentLongtitute, setCurrentLongtitute] = useState('');
   const [coordinates, setCoordinates] = useState({
-    coordinates: [{name: '', x: 0, y: 0}],
+    locations: [{name: '', x: 0, y: 0}],
   });
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -68,8 +68,8 @@ export const Main = () => {
         }}>
         <Marker
           coordinate={{
-            latitude: coordinates?.coordinates[0].x,
-            longitude: coordinates?.coordinates[0].y,
+            latitude: coordinates?.locations[0].x,
+            longitude: coordinates?.locations[0].y,
           }}
           calloutOffset={{x: -8, y: 28}}
           calloutAnchor={{x: 0.5, y: 0.4}}
@@ -93,7 +93,7 @@ export const Main = () => {
               height: 140,
             }}>
             <CustomCallout>
-              <Text>{coordinates?.coordinates[0].name}</Text>
+              <Text>{coordinates?.locations[0].name}</Text>
               <CalloutSubview onPress={() => this._panel.show()}>
                 <Text>Details</Text>
               </CalloutSubview>
@@ -116,7 +116,7 @@ export const Main = () => {
                 x: currentLatitute,
                 y: currentLongtitute,
               },
-              coordinates?.coordinates,
+              coordinates?.locations,
             );
             //TODO do something with this value
             console.log('closest attraction is => ', closestAttraction);
