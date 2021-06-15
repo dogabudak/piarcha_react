@@ -7,6 +7,14 @@ export default function reducer(state = {token: null}, action) {
     case LOGIN:
       return {...state, loading: true};
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        token: action.payload.request._response,
+      };
+    // TODO this is not working properly anymore thats why commented out
+    // TODO and getting it now from .request._response
+    /*
       if (action.payload.data.authenticated) {
         return {...state, loading: false, token: action.payload.data.token};
       } else {
@@ -17,6 +25,7 @@ export default function reducer(state = {token: null}, action) {
           token: action.payload.data.token,
         };
       }
+       */
     case LOGIN_FAIL:
       return {
         ...state,
