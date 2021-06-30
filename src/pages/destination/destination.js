@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {FlatList, StyleSheet, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-community/picker';
 
