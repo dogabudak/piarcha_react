@@ -19,7 +19,7 @@
 		94FAE448213D9403CECF789E /* libPods-piarcha_react.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */; };
 		A26B215E6BAFB0FA3A5311F8 /* libPods-piarcha_react-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E626592E5C798D51BAAE45C4 /* libPods-piarcha_react-tvOSTests.a */; };
 		B120286A4B4577231F9160EB /* libPods-piarcha_react-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 485E4539BC55EE6BD3718986 /* libPods-piarcha_react-tvOS.a */; };
-		F2304E8CE55721B0A9A59B8C /* libPods-piarcha_reactTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 73F871B41F73D5A5512507A0 /* libPods-piarcha_reactTests.a */; };
+		B19063CAAF56716BA0959443 /* libPods-piarcha_react-piarcha_reactTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2F042225FDAE07C25D1663D /* libPods-piarcha_react-piarcha_reactTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		00E356EE1AD99517003FC87E /* piarcha_reactTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = piarcha_reactTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		051240EA5AC21BEA9118E608 /* Pods-piarcha_react-piarcha_reactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-piarcha_reactTests.debug.xcconfig"; path = "Target Support Files/Pods-piarcha_react-piarcha_reactTests/Pods-piarcha_react-piarcha_reactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		0C108A3969E79B1A13350F29 /* Pods-piarcha_react-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-piarcha_react-tvOSTests/Pods-piarcha_react-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* piarcha_react.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = piarcha_react.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = piarcha_react/AppDelegate.h; sourceTree = "<group>"; };
@@ -66,14 +67,15 @@
 		25B5732FA7B4118AEBEFD033 /* Pods-piarcha_reactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_reactTests.release.xcconfig"; path = "Target Support Files/Pods-piarcha_reactTests/Pods-piarcha_reactTests.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* piarcha_react-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "piarcha_react-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* piarcha_react-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "piarcha_react-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		36C06E57E1BA1137B9CBB62A /* Pods-piarcha_react-piarcha_reactTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-piarcha_reactTests.release.xcconfig"; path = "Target Support Files/Pods-piarcha_react-piarcha_reactTests/Pods-piarcha_react-piarcha_reactTests.release.xcconfig"; sourceTree = "<group>"; };
 		485E4539BC55EE6BD3718986 /* libPods-piarcha_react-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A7D4B0FFF19A0651DD97CA8 /* Pods-piarcha_react.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react.release.xcconfig"; path = "Target Support Files/Pods-piarcha_react/Pods-piarcha_react.release.xcconfig"; sourceTree = "<group>"; };
-		73F871B41F73D5A5512507A0 /* libPods-piarcha_reactTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_reactTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75AE39CC2459B0CC0036AFFD /* piarcha_react.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = piarcha_react.entitlements; path = piarcha_react/piarcha_react.entitlements; sourceTree = "<group>"; };
 		75AE39CD2459B0DB0036AFFD /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		84B6FE5D5A58ADEA85B32E60 /* Pods-piarcha_reactTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_reactTests.debug.xcconfig"; path = "Target Support Files/Pods-piarcha_reactTests/Pods-piarcha_reactTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B43B7C873965489472E74020 /* Pods-piarcha_react-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-piarcha_react-tvOSTests/Pods-piarcha_react-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2F042225FDAE07C25D1663D /* libPods-piarcha_react-piarcha_reactTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react-piarcha_reactTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E626592E5C798D51BAAE45C4 /* libPods-piarcha_react-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-piarcha_react-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76799AACE542841C38E4762 /* Pods-piarcha_react-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-piarcha_react-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-piarcha_react-tvOS/Pods-piarcha_react-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -87,7 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2304E8CE55721B0A9A59B8C /* libPods-piarcha_reactTests.a in Frameworks */,
+				B19063CAAF56716BA0959443 /* libPods-piarcha_react-piarcha_reactTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,7 +144,7 @@
 				C1DA591D3505282770E22E60 /* libPods-piarcha_react.a */,
 				485E4539BC55EE6BD3718986 /* libPods-piarcha_react-tvOS.a */,
 				E626592E5C798D51BAAE45C4 /* libPods-piarcha_react-tvOSTests.a */,
-				73F871B41F73D5A5512507A0 /* libPods-piarcha_reactTests.a */,
+				C2F042225FDAE07C25D1663D /* libPods-piarcha_react-piarcha_reactTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,6 +200,8 @@
 				B43B7C873965489472E74020 /* Pods-piarcha_react-tvOSTests.release.xcconfig */,
 				84B6FE5D5A58ADEA85B32E60 /* Pods-piarcha_reactTests.debug.xcconfig */,
 				25B5732FA7B4118AEBEFD033 /* Pods-piarcha_reactTests.release.xcconfig */,
+				051240EA5AC21BEA9118E608 /* Pods-piarcha_react-piarcha_reactTests.debug.xcconfig */,
+				36C06E57E1BA1137B9CBB62A /* Pods-piarcha_react-piarcha_reactTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -213,6 +217,7 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
+				52C7E4A719286B07476A8B27 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -426,6 +431,7 @@
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -448,6 +454,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -498,6 +505,62 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		52C7E4A719286B07476A8B27 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-piarcha_react-piarcha_reactTests/Pods-piarcha_react-piarcha_reactTests-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-piarcha_react-piarcha_reactTests/Pods-piarcha_react-piarcha_reactTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		7A4A3B055AE6665EA4BB01CD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -535,7 +598,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-piarcha_reactTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-piarcha_react-piarcha_reactTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -655,7 +718,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84B6FE5D5A58ADEA85B32E60 /* Pods-piarcha_reactTests.debug.xcconfig */;
+			baseConfigurationReference = 051240EA5AC21BEA9118E608 /* Pods-piarcha_react-piarcha_reactTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
@@ -680,7 +743,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25B5732FA7B4118AEBEFD033 /* Pods-piarcha_reactTests.release.xcconfig */;
+			baseConfigurationReference = 36C06E57E1BA1137B9CBB62A /* Pods-piarcha_react-piarcha_reactTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";

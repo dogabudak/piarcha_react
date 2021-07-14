@@ -1,4 +1,6 @@
 import 'react-native-gesture-handler';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+
 import React, {Component} from 'react';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
@@ -45,11 +47,13 @@ const theme = {
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <PaperProvider theme={theme}>
-          <MainStackNavigator />
-        </PaperProvider>
-      </Provider>
+      <SafeAreaProvider>
+        <Provider store={store}>
+          <PaperProvider theme={theme}>
+            <MainStackNavigator />
+          </PaperProvider>
+        </Provider>
+      </SafeAreaProvider>
     );
   }
 }
