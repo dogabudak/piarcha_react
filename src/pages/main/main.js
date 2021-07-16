@@ -15,6 +15,7 @@ import MapView, {
 } from 'react-native-maps';
 import CustomCallout from './customMarker';
 import getClosestCoordinate from '../../utilities/getClosestCoordinates';
+//TODO this shouldnt be hard coded
 import Images from '../../images/icons/church.png';
 import {useNavigation} from '@react-navigation/native';
 

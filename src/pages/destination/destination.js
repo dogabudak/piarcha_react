@@ -3,13 +3,30 @@ import {StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {Picker} from '@react-native-community/picker';
 import {ListItem, Avatar} from 'react-native-elements';
-
 import {
   getAvailableCountries,
   getAvailableCities,
 } from '../../redux/cityList/reducer';
 import {Text} from 'react-native-paper';
-
+import Images from '../../images/images';
+//TODO get this list from locations project
+const list = [
+  {
+    name: 'Initial Historical Tour',
+    avatar_url: Images.hiker,
+    subtitle: '1 Hour',
+  },
+  {
+    name: 'Detailed amazing tour',
+    avatar_url: Images.trekkingImage,
+    subtitle: '2 Hours',
+  },
+  {
+    name: 'Bicycle tour',
+    avatar_url: Images.bicycle,
+    subtitle: '2 Hours',
+  },
+];
 class Destination extends Component {
   state = {
     country: 'Turkey',
@@ -32,6 +49,9 @@ class Destination extends Component {
     const {countries, cities} = this.props;
     return (
       <View style={styles.page}>
+        <View>
+          <Text>Select your destination</Text>
+        </View>
         <View style={styles.locations}>
           <View style={styles.picker}>
             <Picker
@@ -42,9 +62,6 @@ class Destination extends Component {
               }}>
               {this.listToPickerItem(countries)}
             </Picker>
-          </View>
-          <View style={styles.item}>
-            <Text>Available Cities</Text>
           </View>
           <View style={styles.picker}>
             <Picker
@@ -60,7 +77,7 @@ class Destination extends Component {
         <View style={styles.list}>
           {list.map((l, i) => (
             <ListItem key={i} bottomDivider>
-              <Avatar source={{uri: l.avatar_url}} />
+              <Avatar source={l.avatar_url} />
               <ListItem.Content>
                 <ListItem.Title>{l.name}</ListItem.Title>
                 <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
@@ -75,14 +92,17 @@ class Destination extends Component {
 
 const styles = StyleSheet.create({
   locations: {
+    flex: 1,
     flexDirection: 'row',
     padding: 16,
+    flexShrink: 2,
   },
   picker: {
     flex: 1,
   },
   list: {
     flex: 1,
+    flexGrow: 3,
   },
   page: {
     flexDirection: 'column',
@@ -90,21 +110,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-//TODO get this list from locations project
-const list = [
-  {
-    name: 'Initial Historical Tour',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: '1 Hour',
-  },
-  {
-    name: 'Detailed amazing tour',
-    avatar_url:
-      'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: '2 Hours',
-  },
-];
+
 const mapStateToProps = state => {
   return {
     countries: state?.cityList?.availableCountries || [],
