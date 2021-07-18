@@ -13,7 +13,7 @@ const {width} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 
-class Login extends Component<> {
+class Login extends Component {
   state = {
     username: null,
     password: null,
@@ -29,32 +29,13 @@ class Login extends Component<> {
         <Image style={styles.logo} source={require('../../images/logo.png')} />
         <View style={styles.buttons}>
           <TextInput
-            style={{
-              height: 50,
-              width: width / 1.5,
-              borderColor: 'silver',
-              borderWidth: 5,
-              margin: 5,
-              textAlign: 'center',
-              backgroundColor: 'white',
-              textDecorationStyle: 'solid',
-              letterSpacing: 2,
-            }}
+            style={styles.textInput}
             onChangeText={text => this.setState({username: text})}
             value={this.state.username}
             maxLength={40}
           />
           <TextInput
-            style={{
-              height: 50,
-              width: width / 1.5,
-              borderColor: 'silver',
-              borderWidth: 5,
-              margin: 5,
-              textAlign: 'center',
-              textDecorationStyle: 'solid',
-              letterSpacing: 2,
-            }}
+            style={styles.textInput}
             secureTextEntry={true}
             onChangeText={text => this.setState({password: text})}
             value={this.state.password}
@@ -82,6 +63,16 @@ const styles = StyleSheet.create({
     marginTop: 50,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  textInput: {
+    height: 50,
+    width: width / 1.5,
+    borderColor: 'silver',
+    borderWidth: 5,
+    margin: 5,
+    textAlign: 'center',
+    textDecorationStyle: 'solid',
+    letterSpacing: 2,
   },
   logo: {
     width: 200,

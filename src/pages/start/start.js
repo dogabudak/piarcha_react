@@ -4,7 +4,14 @@ import {
   GoogleSigninButton,
   statusCodes,
 } from '@react-native-community/google-signin';
-import {Button, Dimensions, Image, StyleSheet, View} from 'react-native';
+import {
+  Button,
+  ImageBackground,
+  Dimensions,
+  Image,
+  StyleSheet,
+  View,
+} from 'react-native';
 import {LoginButton, AccessToken} from 'react-native-fbsdk';
 
 const {height} = Dimensions.get('window');
@@ -51,57 +58,62 @@ class Start extends Component<> {
   render() {
     return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../images/logo.png')} />
-        <View style={styles.socialLogin}>
-          <GoogleSigninButton
-            style={{width: height / 4, height: 48}}
-            size={GoogleSigninButton.Size.Wide}
-            color={GoogleSigninButton.Color.Dark}
-            onPress={this.googleSignIn}
-          />
-          <LoginButton
-            style={{width: height / 4.15, height: 42}}
-            onLoginFinished={(error, result) => {
-              if (error) {
-                console.log('login has error: ' + result.error);
-              } else if (result.isCancelled) {
-                console.log('login is cancelled.');
-              } else {
-                AccessToken.getCurrentAccessToken().then(data => {
-                  console.log(data.accessToken.toString());
-                });
-              }
-            }}
-            onLogoutFinished={() => console.log('logout.')}
-          />
-        </View>
-        <View style={styles.buttons}>
-          <Button
-            title="Sign Up For Free"
-            onPress={() => {
-              this.props.navigation.navigate('Register');
-            }}
-          />
-          <Button
-            style={{backgroundColor: 'green'}}
-            title="Login"
-            onPress={() => {
-              this.props.navigation.navigate('Login');
-            }}
-          />
-          <Button
-            title="Continue without login"
-            onPress={() => {
-              this.props.navigation.navigate('Main');
-            }}
-          />
-          <Button
-            title="Tutorial"
-            onPress={() => {
-              this.props.navigation.navigate('Tutorial');
-            }}
-          />
-        </View>
+        <ImageBackground
+          source={require('../../images/background.jpg')}
+          resizeMode="cover"
+          style={styles.backgroundImage}>
+          <View style={styles.buttons}>
+            <Button
+              title="Sign Up For Free"
+              onPress={() => {
+                this.props.navigation.navigate('Register');
+              }}
+            />
+            <Button
+              style={{backgroundColor: 'green'}}
+              title="Login"
+              onPress={() => {
+                this.props.navigation.navigate('Login');
+              }}
+            />
+            <Button
+              title="Continue without login"
+              onPress={() => {
+                this.props.navigation.navigate('Main');
+              }}
+            />
+            <Button
+              title="Tutorial"
+              onPress={() => {
+                this.props.navigation.navigate('Tutorial');
+              }}
+            />
+          </View>
+          <View style={styles.socialLogin}>
+            <GoogleSigninButton
+              style={{width: height / 4, height: 48}}
+              size={GoogleSigninButton.Size.Wide}
+              color={GoogleSigninButton.Color.Dark}
+              onPress={this.googleSignIn}
+            />
+            <LoginButton
+              style={{width: height / 4.15, height: 42}}
+              onLoginFinished={(error, result) => {
+                if (error) {
+                  console.log('login has error: ' + result.error);
+                } else if (result.isCancelled) {
+                  console.log('login is cancelled.');
+                } else {
+                  AccessToken.getCurrentAccessToken().then(data => {
+                    console.log(data.accessToken.toString());
+                  });
+                }
+              }}
+              //TODO be able to logout somehow
+              onLogoutFinished={() => console.log('logout.')}
+            />
+          </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -109,22 +121,19 @@ class Start extends Component<> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: '#fff',
   },
   socialLogin: {
-    marginTop: 30,
+    marginTop: 20,
+    marginBottom: 50,
     alignItems: 'center',
+    justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
     justifyContent: 'center',
   },
   buttons: {
-    marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 200,
-    height: 200,
     alignItems: 'center',
     justifyContent: 'center',
   },
