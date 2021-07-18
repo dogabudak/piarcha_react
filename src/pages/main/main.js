@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {Button, Dimensions, StyleSheet, Text, View} from 'react-native';
-const {height} = Dimensions.get('window');
 import {FAB, Portal} from 'react-native-paper';
 import Geolocation from '@react-native-community/geolocation';
 import {setCurrentLocation} from '../../redux/geoLocation/reducer';
@@ -15,9 +14,10 @@ import MapView, {
 } from 'react-native-maps';
 import CustomCallout from './customMarker';
 import getClosestCoordinate from '../../utilities/getClosestCoordinates';
-//TODO this shouldnt be hard coded
-import Images from '../../images/icons/church.png';
+import Images from '../../images/images';
 import {useNavigation} from '@react-navigation/native';
+
+const {height} = Dimensions.get('window');
 
 export const Main = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -56,6 +56,7 @@ export const Main = () => {
     };
   }, [dispatch]);
   // TODO CalloutSubView is not supported by android
+  console.log(coordinates);
   return (
     <View style={styles.container}>
       <MapView
@@ -74,7 +75,7 @@ export const Main = () => {
           }}
           calloutOffset={{x: -8, y: 28}}
           calloutAnchor={{x: 0.5, y: 0.4}}
-          image={Images}
+          image={Images[(coordinates?.locations[0].type)]}
           ref={ref => {
             this.marker2 = ref;
           }}>
@@ -90,6 +91,7 @@ export const Main = () => {
               }
             }}
             style={{
+              // TODO put this to styles
               width: 140,
               height: 140,
             }}>

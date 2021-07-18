@@ -13,17 +13,17 @@ import Images from '../../images/images';
 const list = [
   {
     name: 'Initial Historical Tour',
-    avatar_url: Images.hiker,
+    avatarImage: Images.Hiker,
     subtitle: '1 Hour',
   },
   {
     name: 'Detailed amazing tour',
-    avatar_url: Images.trekkingImage,
+    avatarImage: Images.TrekkingImage,
     subtitle: '2 Hours',
   },
   {
     name: 'Bicycle tour',
-    avatar_url: Images.bicycle,
+    avatarImage: Images.Bicycle,
     subtitle: '2 Hours',
   },
 ];
@@ -77,7 +77,7 @@ class Destination extends Component {
         <View style={styles.list}>
           {list.map((l, i) => (
             <ListItem key={i} bottomDivider>
-              <Avatar source={l.avatar_url} />
+              <Avatar source={l.avatarImage} />
               <ListItem.Content>
                 <ListItem.Title>{l.name}</ListItem.Title>
                 <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>

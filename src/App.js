@@ -40,7 +40,7 @@ const theme = {
   colors: {
     ...DefaultTheme.colors,
     primary: 'tomato',
-    accent: 'blue',
+    accent: '#f5992c',
   },
 };
 
