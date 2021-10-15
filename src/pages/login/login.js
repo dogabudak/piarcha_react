@@ -31,6 +31,7 @@ class Login extends Component {
           <TextInput
             style={styles.textInput}
             onChangeText={text => this.setState({username: text})}
+            placeholder={'Username'}
             value={this.state.username}
             maxLength={40}
           />
@@ -38,6 +39,7 @@ class Login extends Component {
             style={styles.textInput}
             secureTextEntry={true}
             onChangeText={text => this.setState({password: text})}
+            placeholder={'Password'}
             value={this.state.password}
             maxLength={40}
           />
