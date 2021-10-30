@@ -56,7 +56,6 @@ export const Main = () => {
     };
   }, [dispatch]);
   // TODO CalloutSubView is not supported by android
-  console.log(coordinates);
   return (
     <View style={styles.container}>
       <MapView
@@ -90,11 +89,7 @@ export const Main = () => {
                 return;
               }
             }}
-            style={{
-              // TODO put this to styles
-              width: 140,
-              height: 140,
-            }}>
+            style={styles.callout}>
             <CustomCallout>
               <Text>{coordinates?.locations[0].name}</Text>
               <CalloutSubview onPress={() => this._panel.show()}>
@@ -121,7 +116,7 @@ export const Main = () => {
               },
               coordinates?.locations,
             );
-            //TODO do something with this value
+            //TODO show a navigation with this value
             console.log('closest attraction is => ', closestAttraction);
           }}
         />
@@ -212,10 +207,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginBottom: -100,
   },
-  slider: {
-    marginTop: -50,
-    zIndex: 1,
-    alignItems: 'center',
+  callout: {
+    width: 140,
+    height: 140,
   },
   fab: {
     position: 'absolute',

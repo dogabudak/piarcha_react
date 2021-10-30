@@ -40,18 +40,16 @@ class Start extends Component<> {
       const userInfo = await GoogleSignin.signIn();
       console.log(userInfo);
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        console.log(error);
+      switch (error.code) {
         // user cancelled the login flow
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        console.log(error);
+        case statusCodes.SIGN_IN_CANCELLED:
         // operation (e.g. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        console.log(error);
+        case statusCodes.PLAY_SERVICES_NOT_AVAILABLE:
         // play services not available or outdated
-      } else {
-        console.log(error);
-        // some other error happened
+        case statusCodes.IN_PROGRESS:
+        default:
+          console.log(error);
+          break;
       }
     }
   };

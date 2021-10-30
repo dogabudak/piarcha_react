@@ -32,7 +32,7 @@ export default function Profile() {
   };
   // TODO country and city that he is from
   // TODO fetch data here from db or save the data here in phone
-  // TODO hobbies ? as a category
+  // TODO intrested in ? (like coffee, long walks beer etc.)
   // TODO countries you want to visit from the list
   // TODO Privacy
   return (
