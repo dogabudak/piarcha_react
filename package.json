@@ -6,6 +6,8 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "start:log:ios": "react-native log-ios",
+    "start:log:android": "react-native log-android",
     "build:ios": "cd ./ios && arch -x86_64 pod install",
     "test": "jest",
     "lint": "eslint ."

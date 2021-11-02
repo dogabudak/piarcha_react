@@ -103,7 +103,8 @@ export const Main = () => {
         <Button
           title="Create a route plan !"
           onPress={() => {
-            console.log();
+            //TODO this should do something
+            console.log('Create a route plan ! Pressed ');
           }}
         />
         <Button

@@ -1,9 +1,9 @@
 // import * as Interface from 'piarch-a-interfaces';
-const churchImage = require('./map/church.png');
-const monumentImage = require('./map/monument.png');
-const museumImage = require('./map/museum.png');
-const palaceImage = require('./map/palace.png');
-const shopImage = require('./map/shop.png');
+const churchImage = require('./map/icons/church.png');
+const monumentImage = require('./map/icons/monument.png');
+const museumImage = require('./map/icons/museum.png');
+const palaceImage = require('./map/icons/palace.png');
+const shopImage = require('./map/icons/shop.png');
 const bicycleImage = require('./icons/bicycle.png');
 const hikerImage = require('./icons/hiker.png');
 const trekkingImage = require('./icons/trekking.png');

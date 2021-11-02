@@ -8,12 +8,10 @@ import {
   Button,
   ImageBackground,
   Dimensions,
-  Image,
   StyleSheet,
   View,
 } from 'react-native';
 import {LoginButton, AccessToken} from 'react-native-fbsdk';
-
 const {height} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
@@ -68,7 +66,6 @@ class Start extends Component<> {
               }}
             />
             <Button
-              style={{backgroundColor: 'green'}}
               title="Login"
               onPress={() => {
                 this.props.navigation.navigate('Login');
@@ -95,7 +92,7 @@ class Start extends Component<> {
               onPress={this.googleSignIn}
             />
             <LoginButton
-              style={{width: height / 4.15, height: 42}}
+              // TODO this looks weird in android
               onLoginFinished={(error, result) => {
                 if (error) {
                   console.log('login has error: ' + result.error);
