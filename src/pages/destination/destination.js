@@ -1,16 +1,16 @@
-import React, {Component} from 'react';
-import {StyleSheet, View} from 'react-native';
-import {connect} from 'react-redux';
-import {Picker} from '@react-native-community/picker';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import {Picker} from '@react-native-picker/picker';
+import Images from '../../images/images';
 import {ListItem, Avatar} from 'react-native-elements';
+import {useDispatch} from 'react-redux';
 import {
   getAvailableCountries,
   getAvailableCities,
+  getCoordinates,
 } from '../../redux/cityList/reducer';
-import {Text} from 'react-native-paper';
-import Images from '../../images/images';
-//TODO get this list from locations project
-const list = [
+
+const tourList = [
   {
     name: 'Initial Historical Tour',
     avatarImage: Images.Hiker,
@@ -27,69 +27,81 @@ const list = [
     subtitle: '2 Hours',
   },
 ];
-class Destination extends Component {
-  state = {
-    country: 'Turkey',
-    city: null,
-  };
-  componentDidMount() {
-    this.props.getAvailableCountries();
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.country !== this.state.country) {
-      this.props.getAvailableCities(this.state.country);
-    }
-  }
-  listToPickerItem(list) {
-    return list?.map(eachValue => (
-      <Picker.Item label={eachValue} value={eachValue} />
-    ));
-  }
-  render() {
-    const {countries, cities} = this.props;
-    return (
-      <View style={styles.page}>
-        <View>
-          <Text>Select your destination</Text>
+
+const listToPickerItem = listToConvert => {
+  return listToConvert?.map(eachValue => (
+    <Picker.Item label={eachValue} value={eachValue} />
+  ));
+};
+const Destination = () => {
+  const [country, setCountry] = useState('Turkey');
+  const [city, setCity] = useState(null);
+  const [cities, setCities] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [coordinates, setCoorditanes] = useState([]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAvailableCountries()).then(result => {
+      setCountries(result.payload.data.countries);
+    });
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAvailableCities(country)).then(result => {
+      setCities(result.payload.data.cities);
+    });
+  }, [country, dispatch]);
+  useEffect(() => {
+    dispatch(getCoordinates(city)).then(result => {
+      setCoorditanes(result.payload.data.locations);
+    });
+  }, [city, dispatch]);
+  return (
+    <View style={styles.page}>
+      <View>
+        <Text>Select your destination</Text>
+      </View>
+      <View style={styles.locations}>
+        <View style={styles.picker}>
+          <Picker
+            selectedValue={country}
+            onValueChange={(itemValue, itemIndex) => setCountry(itemValue)}>
+            {listToPickerItem(countries)}
+          </Picker>
         </View>
-        <View style={styles.locations}>
-          <View style={styles.picker}>
-            <Picker
-              selectedValue={this.state.country}
-              style={{height: 50, width: 150}}
-              onValueChange={itemValue => {
-                this.setState({country: itemValue});
-              }}>
-              {this.listToPickerItem(countries)}
-            </Picker>
-          </View>
-          <View style={styles.picker}>
-            <Picker
-              selectedValue={this.state.city}
-              style={{height: 50, width: 150}}
-              onValueChange={itemValue => {
-                this.setState({city: itemValue});
-              }}>
-              {this.listToPickerItem(cities)}
-            </Picker>
-          </View>
-        </View>
-        <View style={styles.list}>
-          {list.map((l, i) => (
-            <ListItem key={i} bottomDivider>
-              <Avatar source={l.avatarImage} />
-              <ListItem.Content>
-                <ListItem.Title>{l.name}</ListItem.Title>
-                <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
-              </ListItem.Content>
-            </ListItem>
-          ))}
+        <View style={styles.picker}>
+          <Picker
+            selectedValue={city}
+            onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
+            {listToPickerItem(cities)}
+          </Picker>
         </View>
       </View>
-    );
-  }
-}
-
+      <View style={styles.list}>
+        {tourList.map((l, i) => (
+          <ListItem key={i} bottomDivider>
+            <Avatar source={l.avatarImage} />
+            <ListItem.Content>
+              <ListItem.Title>{l.name}</ListItem.Title>
+              <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        ))}
+      </View>
+      <View style={styles.list}>
+        {coordinates.map((l, i) => (
+          <ListItem key={i} bottomDivider>
+            <ListItem.Content>
+              <ListItem.Title>{l.name}</ListItem.Title>
+              <ListItem.Subtitle>{l.name}</ListItem.Subtitle>
+            </ListItem.Content>
+          </ListItem>
+        ))}
+      </View>
+    </View>
+  );
+};
 const styles = StyleSheet.create({
   locations: {
     flex: 1,
@@ -110,20 +122,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-const mapStateToProps = state => {
-  return {
-    countries: state?.cityList?.availableCountries || [],
-    cities: state?.cityList?.availableCities || [],
-  };
-};
-
-const mapDispatchToProps = {
-  getAvailableCountries,
-  getAvailableCities,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Destination);
+export default Destination;
