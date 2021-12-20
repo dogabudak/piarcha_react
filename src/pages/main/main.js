@@ -144,7 +144,15 @@ export const Main = () => {
           small
           open={isMenuOpen}
           icon={isMenuOpen ? 'calendar-today' : 'reorder-horizontal'}
+          //TODO put this FAB to somewher else
           actions={[
+            {
+              icon: 'message',
+              label: 'Inbox',
+              onPress: () => {
+                navigation.navigate('Inbox');
+              },
+            },
             {
               icon: 'map',
               label: 'Destination',

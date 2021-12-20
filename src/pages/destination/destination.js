@@ -33,7 +33,7 @@ const listToPickerItem = listToConvert => {
     <Picker.Item label={eachValue} value={eachValue} />
   ));
 };
-const Destination = () => {
+export default function Destination() {
   const [country, setCountry] = useState('Turkey');
   const [city, setCity] = useState(null);
   const [cities, setCities] = useState([]);
@@ -101,7 +101,7 @@ const Destination = () => {
       </View>
     </View>
   );
-};
+}
 const styles = StyleSheet.create({
   locations: {
     flex: 1,
@@ -122,4 +122,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-export default Destination;
