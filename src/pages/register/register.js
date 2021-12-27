@@ -1,5 +1,12 @@
 import React from 'react';
-import {Text, View, TextInput, Button, StyleSheet, Image} from 'react-native';
+import {
+  Text,
+  View,
+  ImageBackground,
+  TextInput,
+  Button,
+  StyleSheet,
+} from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 
 export default function Register(props) {
@@ -12,8 +19,10 @@ export default function Register(props) {
 
   return (
     <View style={styles.container}>
-      <View>
-        <Image style={styles.logo} source={require('../../images/logo.png')} />
+      <ImageBackground
+        source={require('../../images/backgrounds/morning.png')}
+        resizeMode="cover"
+        style={styles.backgroundImage}>
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
@@ -81,26 +90,21 @@ export default function Register(props) {
           defaultValue=""
         />
         {errors.phonenumber && <Text>This is required.</Text>}
-      </View>
-      <Button title="Register" onPress={handleSubmit(onSubmit)} />
+        <Button title="Register" onPress={handleSubmit(onSubmit)} />
+      </ImageBackground>
     </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
     flex: 1,
-    alignItems: 'center',
   },
-  logo: {
-    width: 200,
-    height: 200,
-    alignItems: 'center',
+  backgroundImage: {
+    flex: 1,
     justifyContent: 'center',
   },
   formInput: {
     height: 50,
-    width: 300,
     borderColor: 'silver',
     borderWidth: 2,
     margin: 5,

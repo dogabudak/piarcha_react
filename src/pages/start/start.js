@@ -12,10 +12,10 @@ import {
   View,
 } from 'react-native';
 import {LoginButton, AccessToken} from 'react-native-fbsdk';
-const {height} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 
+const {height} = Dimensions.get('window');
 class Start extends Component<> {
   state = {
     username: null,
@@ -55,7 +55,7 @@ class Start extends Component<> {
     return (
       <View style={styles.container}>
         <ImageBackground
-          source={require('../../images/background.jpg')}
+          source={require('../../images/backgrounds/morning.png')}
           resizeMode="cover"
           style={styles.backgroundImage}>
           <View style={styles.buttons}>

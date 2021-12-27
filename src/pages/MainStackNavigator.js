@@ -18,54 +18,23 @@ const Stack = createStackNavigator();
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
         <Stack.Screen
           //TODO these names should come from an enum and navigate should also get from the same enum
           name="Start"
           component={Start}
-          //TODO this header shown is everywhere, decrease it to one
-          options={{headerShown: false}}
         />
-        <Stack.Screen
-          name="Tutorial"
-          component={Tutorial}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Register"
-          component={Register}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Profile"
-          component={Profile}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Destination"
-          component={Destination}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Settings"
-          component={Settings}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="Inbox"
-          component={Inbox}
-          options={{headerShown: false}}
-        />
+        <Stack.Screen name="Tutorial" component={Tutorial} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Main" component={Main} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Profile" component={Profile} />
+        <Stack.Screen name="Destination" component={Destination} />
+        <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="Inbox" component={Inbox} />
       </Stack.Navigator>
     </NavigationContainer>
   );
