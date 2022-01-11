@@ -52,7 +52,6 @@ export default function reducer(
         availableCountries: action.payload.data.countries,
       };
     case GET_AVAILABLE_COUNTRIES_FAIL:
-      console.log('Error while fetching counteries');
       return {
         ...state,
         loading: false,

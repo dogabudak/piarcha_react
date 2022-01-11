@@ -30,7 +30,7 @@ export default function reducer(state = {token: null}, action) {
       return {
         ...state,
         loading: false,
-        error: 'Error while logging',
+        error: 'Login failed for user',
       };
     default:
       return state;

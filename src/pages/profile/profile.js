@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Button,
@@ -10,12 +10,16 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import SelectPicture from '../../components/utilities/selectPicture';
 import {useForm, Controller} from 'react-hook-form';
-import {setUserInformation} from '../../redux/user/user';
-import {useDispatch} from 'react-redux';
+import {setUserInformation, getUserInformation} from '../../redux/user/reducer';
+import {useDispatch, useSelector} from 'react-redux';
 
 export default function Profile() {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const {firstName, lastName } = useSelector(state => ({
+    firstName: state.user.firstName,
+    lastName: state.user.lastName
+  }));
   const {control, handleSubmit, errors} = useForm();
   const dispatch = useDispatch();
 
@@ -26,15 +30,17 @@ export default function Profile() {
     setShow(true);
     setMode(currentMode);
   };
-
   const showDatepicker = () => {
     showMode('date');
   };
+    useEffect(() => {
+      dispatch(getUserInformation());
+    }, [dispatch]);
   // TODO country and city that he is from
-  // TODO fetch data here from db or save the data here in phone
   // TODO intrested in ? (like coffee, long walks beer etc.)
   // TODO countries you want to visit from the list
   // TODO Privacy
+
   return (
     <View>
       <SelectPicture />
@@ -51,7 +57,7 @@ export default function Profile() {
         )}
         name="firstName"
         rules={{required: true}}
-        defaultValue=""
+        defaultValue={firstName}
       />
       {errors.firstName && <Text>This is required.</Text>}
 
@@ -68,7 +74,7 @@ export default function Profile() {
         )}
         name="lastName"
         rules={{required: true}}
-        defaultValue=""
+        defaultValue={lastName}
       />
       {errors.lastName && <Text>This is required.</Text>}
       <Controller

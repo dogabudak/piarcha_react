@@ -15,19 +15,19 @@ export const store = createStore(
     multiClientMiddleware({
       destinations: {
         client: axios.create({
-          baseURL: 'http://localhost:3019',
+          baseURL: 'http://10.0.2.2:3019',
           responseType: 'json',
         }),
       },
       login: {
         client: axios.create({
-          baseURL: 'http://localhost:8000',
+          baseURL: 'http://10.0.2.2:8000',
           responseType: 'json',
         }),
       },
-      userUpdate: {
+      user: {
         client: axios.create({
-          baseURL: 'http://localhost:3020',
+          baseURL: 'http://10.0.2.2:3020',
           responseType: 'json',
         }),
       },

@@ -30,6 +30,7 @@ export const Main = () => {
   const navigation = useNavigation();
 
   useEffect(() => {
+    // TODO instead of this 'then', you can do this in reducer
     dispatch(getCoordinates('Istanbul')).then(result => {
       setCoordinates(result.payload.data);
     });

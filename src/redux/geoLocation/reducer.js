@@ -28,13 +28,15 @@ export function setCurrentLocation(locationObject) {
   return {
     type: SAVE_CURRENT_LOCATION,
     payload: {
-      client: 'userUpdate',
+      client: 'user',
       request: {
         method: 'post',
         url: '/update-location',
         data: {
-          token,
           currentLocation: locationObject,
+        },
+        headers: {
+          authorize: `jwt ${token}`,
         },
       },
     },
