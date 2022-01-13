@@ -10,24 +10,6 @@ import {
   getCoordinates,
 } from '../../redux/cityList/reducer';
 
-const tourList = [
-  {
-    name: 'Initial Historical Tour',
-    avatarImage: Images.Hiker,
-    subtitle: '1 Hour',
-  },
-  {
-    name: 'Detailed amazing tour',
-    avatarImage: Images.TrekkingImage,
-    subtitle: '2 Hours',
-  },
-  {
-    name: 'Bicycle tour',
-    avatarImage: Images.Bicycle,
-    subtitle: '2 Hours',
-  },
-];
-
 const listToPickerItem = listToConvert => {
   return listToConvert?.map(eachValue => (
     <Picker.Item label={eachValue} value={eachValue} />
@@ -38,23 +20,28 @@ export default function Destination() {
   const [city, setCity] = useState(null);
   const [cities, setCities] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [coordinates, setCoorditanes] = useState([]);
+  const [coordinates, setCoordinates] = useState([]);
+  const [tourList, setTourList] = useState([]);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
+    // TODO instead of this .then you can use useSelector
     dispatch(getAvailableCountries()).then(result => {
       setCountries(result.payload.data.countries);
     });
   }, [dispatch]);
   useEffect(() => {
+        // TODO instead of this .then you can use useSelector
     dispatch(getAvailableCities(country)).then(result => {
-      setCities(result.payload.data.cities);
+      setCities(result.payload.data);
     });
   }, [country, dispatch]);
   useEffect(() => {
+        // TODO instead of this .then you can use useSelector
     dispatch(getCoordinates(city)).then(result => {
-      setCoorditanes(result.payload.data.locations);
+      setCoordinates(result.payload.data.coordinates);
+      setTourList(result.payload.data.tours)
     });
   }, [city, dispatch]);
   return (
@@ -66,14 +53,14 @@ export default function Destination() {
         <View style={styles.picker}>
           <Picker
             selectedValue={country}
-            onValueChange={(itemValue, itemIndex) => setCountry(itemValue)}>
+            onValueChange={itemValue => setCountry(itemValue)}>
             {listToPickerItem(countries)}
           </Picker>
         </View>
         <View style={styles.picker}>
           <Picker
             selectedValue={city}
-            onValueChange={(itemValue, itemIndex) => setCity(itemValue)}>
+            onValueChange={itemValue => setCity(itemValue)}>
             {listToPickerItem(cities)}
           </Picker>
         </View>
@@ -81,10 +68,10 @@ export default function Destination() {
       <View style={styles.list}>
         {tourList.map((l, i) => (
           <ListItem key={i} bottomDivider>
-            <Avatar source={l.avatarImage} />
+            <Avatar source={Images[l.type]} />
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>
-              <ListItem.Subtitle>{l.subtitle}</ListItem.Subtitle>
+              <ListItem.Subtitle>{l.shortDescription}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         ))}

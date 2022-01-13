@@ -16,7 +16,7 @@ export default {
   Museum: museumImage,
   Palace: palaceImage,
   Shop: shopImage,
-  Bicycle: bicycleImage,
-  Hiker: hikerImage,
-  TrekkingImage: trekkingImage,
+  Bike: bicycleImage,
+  Hike: hikerImage,
+  Trekking: trekkingImage,
 };

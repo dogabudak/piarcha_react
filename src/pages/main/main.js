@@ -23,16 +23,15 @@ export const Main = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentLatitute, setCurrentLatitute] = useState('');
   const [currentLongtitute, setCurrentLongtitute] = useState('');
-  const [coordinates, setCoordinates] = useState({
-    locations: [{name: '', x: 0, y: 0}],
-  });
+  const [coordinates, setCoordinates] = useState([{name: '', x: 0, y: 0}]);
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
   useEffect(() => {
     // TODO instead of this 'then', you can do this in reducer
+    // TODO instead of this 'Istanbul', find a solution
     dispatch(getCoordinates('Istanbul')).then(result => {
-      setCoordinates(result.payload.data);
+      setCoordinates(result.payload.data.coordinates);
     });
   }, [dispatch]);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -56,6 +55,38 @@ export const Main = () => {
       clearInterval(interval);
     };
   }, [dispatch]);
+  // TODO marker images are huuuge
+  const Markers = coordinates && coordinates.map((eachCoordinate)=>
+  <Marker
+  coordinate={{
+    latitude: eachCoordinate.x,
+    longitude: eachCoordinate.y,
+  }}
+  calloutOffset={{x: -8, y: 28}}
+  calloutAnchor={{x: 0.5, y: 0.4}}
+  image={Images[(eachCoordinate.type)]}
+ >
+  <Callout
+    alphaHitTest
+    tooltip
+    onPress={e => {
+      if (
+        e.nativeEvent.action === 'marker-inside-overlay-press' ||
+        e.nativeEvent.action === 'callout-inside-press'
+      ) {
+        return;
+      }
+    }}
+    style={styles.callout}>
+    <CustomCallout>
+      <Text>{eachCoordinate.name}</Text>
+      <CalloutSubview onPress={() => this._panel.show()}>
+        <Text>Details</Text>
+      </CalloutSubview>
+    </CustomCallout>
+  </Callout>
+</Marker>)
+
   // TODO CalloutSubView is not supported by android
   return (
     <View style={styles.container}>
@@ -68,37 +99,7 @@ export const Main = () => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
-        <Marker
-          coordinate={{
-            latitude: coordinates?.locations[0].x,
-            longitude: coordinates?.locations[0].y,
-          }}
-          calloutOffset={{x: -8, y: 28}}
-          calloutAnchor={{x: 0.5, y: 0.4}}
-          image={Images[(coordinates?.locations[0].type)]}
-          ref={ref => {
-            this.marker2 = ref;
-          }}>
-          <Callout
-            alphaHitTest
-            tooltip
-            onPress={e => {
-              if (
-                e.nativeEvent.action === 'marker-inside-overlay-press' ||
-                e.nativeEvent.action === 'callout-inside-press'
-              ) {
-                return;
-              }
-            }}
-            style={styles.callout}>
-            <CustomCallout>
-              <Text>{coordinates?.locations[0].name}</Text>
-              <CalloutSubview onPress={() => this._panel.show()}>
-                <Text>Details</Text>
-              </CalloutSubview>
-            </CustomCallout>
-          </Callout>
-        </Marker>
+        {Markers}
       </MapView>
       <View style={styles.buttons}>
         <Button
@@ -116,7 +117,7 @@ export const Main = () => {
                 x: currentLatitute,
                 y: currentLongtitute,
               },
-              coordinates?.locations,
+              coordinates,
             );
             //TODO show a navigation with this value
             console.log('closest attraction is => ', closestAttraction);
@@ -185,10 +186,6 @@ export const Main = () => {
           ]}
           onStateChange={() => {
             toggleMenu();
-          }}
-          onPress={() => {
-            if (isMenuOpen) {
-            }
           }}
         />
       </Portal>
