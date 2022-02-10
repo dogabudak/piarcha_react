@@ -16,9 +16,9 @@ import {useDispatch, useSelector} from 'react-redux';
 export default function Profile() {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
-  const {firstName, lastName } = useSelector(state => ({
+  const {firstName, lastName} = useSelector(state => ({
     firstName: state.user.firstName,
-    lastName: state.user.lastName
+    lastName: state.user.lastName,
   }));
   const {control, handleSubmit, errors} = useForm();
   const dispatch = useDispatch();
@@ -33,9 +33,9 @@ export default function Profile() {
   const showDatepicker = () => {
     showMode('date');
   };
-    useEffect(() => {
-      dispatch(getUserInformation());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserInformation());
+  }, [dispatch]);
   // TODO country and city that he is from
   // TODO intrested in ? (like coffee, long walks beer etc.)
   // TODO countries you want to visit from the list

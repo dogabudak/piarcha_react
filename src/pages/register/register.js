@@ -8,15 +8,17 @@ import {
   StyleSheet,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
+import {register} from '../../redux/user/reducer';
+import {useDispatch} from 'react-redux';
 
 export default function Register(props) {
   const {control, handleSubmit, errors} = useForm();
-  const onSubmit = data => {
-    console.log(data);
-    // TODO send data to create profile service
+  const dispatch = useDispatch();
+  const onSubmit = async data => {
+    dispatch(register(data));
     props.navigation.navigate('Main');
   };
-
+  // TODO Create a proper register page (only a form page is stupid, maybe create a couple pages which shares states, when you click register in the end send customer to the register sercive)
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -29,17 +31,16 @@ export default function Register(props) {
             <TextInput
               style={styles.formInput}
               onBlur={onBlur}
-              placeholder={'Your name!'}
+              placeholder={'Username or email'}
               onChangeText={value => onChange(value)}
               value={value}
             />
           )}
-          name="firstName"
+          name="username"
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.firstName && <Text>This is required.</Text>}
-
+        {errors.username && <Text>This is required.</Text>}
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
@@ -48,48 +49,30 @@ export default function Register(props) {
               onBlur={onBlur}
               onChangeText={value => onChange(value)}
               value={value}
-              placeholder={'Your lastname!'}
+              placeholder={'Password'}
             />
           )}
-          name="lastName"
+          name="password"
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.lastName && <Text>This is required.</Text>}
+        {errors.password && <Text>This is required.</Text>}
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
             <TextInput
               style={styles.formInput}
               onBlur={onBlur}
-              autoCompleteType={'email'}
-              keyboardType={'email-address'}
               onChangeText={value => onChange(value)}
               value={value}
-              placeholder={'E-mail'}
+              placeholder={'re-enter password'}
             />
           )}
-          name="email"
+          name="passwordDuplicaiton"
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.email && <Text>This is required.</Text>}
-        <Controller
-          control={control}
-          render={({onChange, onBlur, value}) => (
-            <TextInput
-              style={styles.formInput}
-              onBlur={onBlur}
-              keyboardType={'phone-pad'}
-              onChangeText={value => onChange(value)}
-              value={value}
-              placeholder={'Phone number'}
-            />
-          )}
-          name="phonenumber"
-          defaultValue=""
-        />
-        {errors.phonenumber && <Text>This is required.</Text>}
+        {errors.passwordDuplicaiton && <Text>This is required.</Text>}
         <Button title="Register" onPress={handleSubmit(onSubmit)} />
       </ImageBackground>
     </View>
