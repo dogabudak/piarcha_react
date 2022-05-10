@@ -12,9 +12,12 @@ import {register} from '../../redux/user/reducer';
 import {useDispatch} from 'react-redux';
 
 export default function Register(props) {
-  const {control, handleSubmit, errors} = useForm();
+  const {control, getValues, handleSubmit, errors} = useForm();
   const dispatch = useDispatch();
   const onSubmit = async data => {
+    if (data.passwordDuplicaiton !== data.password) {
+      return;
+    }
     dispatch(register(data));
     props.navigation.navigate('Main');
   };
@@ -40,13 +43,16 @@ export default function Register(props) {
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.username && <Text>This is required.</Text>}
+        {errors.username && (
+          <Text style={styles.error}>Please enter a user name</Text>
+        )}
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
             <TextInput
               style={styles.formInput}
               onBlur={onBlur}
+              secureTextEntry={true}
               onChangeText={value => onChange(value)}
               value={value}
               placeholder={'Password'}
@@ -56,13 +62,16 @@ export default function Register(props) {
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.password && <Text>This is required.</Text>}
+        {errors.password && (
+          <Text style={styles.error}>Please enter a password</Text>
+        )}
         <Controller
           control={control}
           render={({onChange, onBlur, value}) => (
             <TextInput
               style={styles.formInput}
               onBlur={onBlur}
+              secureTextEntry={true}
               onChangeText={value => onChange(value)}
               value={value}
               placeholder={'re-enter password'}
@@ -72,7 +81,10 @@ export default function Register(props) {
           rules={{required: true}}
           defaultValue=""
         />
-        {errors.passwordDuplicaiton && <Text>This is required.</Text>}
+        {(getValues('passwordDuplicaiton') !== getValues('password') ||
+          errors.passwordDuplicaiton) && (
+          <Text style={styles.error}>Please re-enter your password</Text>
+        )}
         <Button title="Register" onPress={handleSubmit(onSubmit)} />
       </ImageBackground>
     </View>
@@ -85,6 +97,9 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     justifyContent: 'center',
+  },
+  error: {
+    color: 'red',
   },
   formInput: {
     height: 50,
