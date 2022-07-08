@@ -1,4 +1,5 @@
 {
   "name": "piarcha_react",
+  "facebookAutoInitEnabled": true,
   "displayName": "piarcha_react"
 }
