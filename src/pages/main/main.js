@@ -83,7 +83,7 @@ export const Main = () => {
     style={styles.callout}>
       <CustomCallout onPress={() => {
         if (Platform.OS !== 'ios'){
-          navigation.navigate('Settings')
+          navigation.navigate('LocationDetailsPage')
         }}}>
       <Text>{eachCoordinate.name}</Text>
       {Platform.OS === 'ios' && 
@@ -95,7 +95,6 @@ export const Main = () => {
   </Callout>
 </Marker>)
 
-  // TODO CalloutSubView is not supported by android
   return (
     <View style={styles.container}>
       <MapView
