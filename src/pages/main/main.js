@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
-import {Button, Dimensions, StyleSheet, Text, View} from 'react-native';
+import {Button, Dimensions, Platform, StyleSheet, Text, View} from 'react-native';
 import {FAB, Portal} from 'react-native-paper';
 import Geolocation from '@react-native-community/geolocation';
 import {setCurrentLocation} from '../../redux/geoLocation/reducer';
@@ -70,6 +70,9 @@ export const Main = () => {
     alphaHitTest
     tooltip
     onPress={e => {
+      if (Platform.OS !== 'ios'){
+        navigation.navigate('Settings');
+      }
       if (
         e.nativeEvent.action === 'marker-inside-overlay-press' ||
         e.nativeEvent.action === 'callout-inside-press'
@@ -78,11 +81,16 @@ export const Main = () => {
       }
     }}
     style={styles.callout}>
-    <CustomCallout>
+      <CustomCallout onPress={() => {
+        if (Platform.OS !== 'ios'){
+          navigation.navigate('Settings')
+        }}}>
       <Text>{eachCoordinate.name}</Text>
+      {Platform.OS === 'ios' && 
       <CalloutSubview onPress={() => this._panel.show()}>
         <Text>Details</Text>
       </CalloutSubview>
+      }
     </CustomCallout>
   </Callout>
 </Marker>)
