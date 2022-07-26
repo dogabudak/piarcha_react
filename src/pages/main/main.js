@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {memo, useCallback, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {
   Button,
@@ -33,6 +33,11 @@ export const Main = () => {
   const [coordinates, setCoordinates] = useState([{name: '', x: 0, y: 0}]);
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const [isMapReady, setMapReady] = useState(false);
+  const _map = useRef(null);
+  const _handleMapReady = useCallback(() => {
+    setMapReady(true);
+  }, [setMapReady]);
 
   useEffect(() => {
     // TODO instead of this 'then', you can do this in reducer
@@ -110,7 +115,11 @@ export const Main = () => {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE}
-        style={styles.map}
+        ref={_map}
+        style={isMapReady ? styles.map : {}}
+        onMapReady={_handleMapReady}
+        showsUserLocation={true}
+        showsMyLocationButton={true}
         region={{
           latitude: 41.0094092,
           longitude: 28.9770532,
@@ -244,4 +253,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Main;
+export default memo(Main);
