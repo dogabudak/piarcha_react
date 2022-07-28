@@ -1,6 +1,7 @@
 import Main from './main/main';
 import Login from './login/login';
 import Start from './start/start';
+import ForgotPassword from './forgotPassword/forgotPassword';
 import Register from './register/register';
 import Tutorial from './tutorial/tutorial';
 import Profile from './profile/profile';
@@ -28,6 +29,7 @@ function MainStackNavigator() {
           component={Start}
         />
         <Stack.Screen name="Tutorial" component={Tutorial} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="Register" component={Register} />

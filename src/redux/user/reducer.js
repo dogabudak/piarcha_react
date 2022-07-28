@@ -4,6 +4,10 @@ export const SAVE_USER = 'SAVE_USER_LOAD';
 export const SAVE_USER_SUCCESS = 'SAVE_USER_SUCCESS';
 export const SAVE_USER_FAIL = 'SAVE_USER_FAIL';
 
+export const FORGOT_PASSWORD = 'FORGOT_PASSWORD_LOAD';
+export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
+export const FORGOT_PASSWORD_FAIL = 'FORGOT_PASSWORD_FAIL';
+
 export const REGISTER_USER = 'REGISTER_USER_LOAD';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
@@ -15,6 +19,7 @@ export const GET_USER_LOAD_FAIL = 'GET_USER_LOAD_FAIL';
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case SAVE_USER:
+    case FORGOT_PASSWORD:
     case REGISTER_USER:
     case GET_USER:
       return {...state, loading: true};
@@ -22,6 +27,7 @@ export default function reducer(state = {}, action) {
       const {firstName, lastName} = action.payload.data;
       return {...state, firstName, lastName, loading: false};
     case SAVE_USER_SUCCESS:
+    case FORGOT_PASSWORD_SUCCESS:
     case REGISTER_USER_SUCCESS:
       return {...state, loading: false};
     case GET_USER_LOAD_FAIL:
@@ -30,6 +36,7 @@ export default function reducer(state = {}, action) {
         loading: false,
         error: 'Error getting user informaton',
       };
+    case FORGOT_PASSWORD_FAIL:
     case REGISTER_USER_FAIL:
     case SAVE_USER_FAIL:
       return {
@@ -92,6 +99,18 @@ export function getUserInformation() {
         headers: {
           authorize: `jwt ${token}`,
         },
+      },
+    },
+  };
+}
+export function forgotPassword(email) {
+  return {
+    type: FORGOT_PASSWORD,
+    payload: {
+      client: 'user',
+      request: {
+        method: 'get',
+        url: `/user/${email}`,
       },
     },
   };

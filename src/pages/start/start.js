@@ -78,6 +78,12 @@ class Start extends Component<> {
               }}
             />
             <Button
+              title="Forgot password ? "
+              onPress={() => {
+                this.props.navigation.navigate('ForgotPassword');
+              }}
+            />
+            <Button
               title="Tutorial"
               onPress={() => {
                 this.props.navigation.navigate('Tutorial');
