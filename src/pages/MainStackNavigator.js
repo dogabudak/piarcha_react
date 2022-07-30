@@ -7,6 +7,7 @@ import Tutorial from './tutorial/tutorial';
 import Profile from './profile/profile';
 import Destination from './destination/destination';
 import Inbox from './inbox/inbox';
+import Tour from './tour/tour';
 import Settings from './settings/settings';
 
 import * as React from 'react';
@@ -37,6 +38,7 @@ function MainStackNavigator() {
         <Stack.Screen name="Destination" component={Destination} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Inbox" component={Inbox} />
+        <Stack.Screen name="Tour" component={Tour} />
       </Stack.Navigator>
     </NavigationContainer>
   );

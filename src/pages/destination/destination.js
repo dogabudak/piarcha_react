@@ -9,6 +9,7 @@ import {
   getAvailableCities,
   getCoordinates,
 } from '../../redux/cityList/reducer';
+import {useNavigation} from '@react-navigation/native';
 
 const listToPickerItem = listToConvert => {
   return listToConvert?.map(eachValue => (
@@ -24,6 +25,7 @@ export default function Destination() {
   const [tourList, setTourList] = useState([]);
 
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     // TODO instead of this .then you can use useSelector
@@ -32,16 +34,16 @@ export default function Destination() {
     });
   }, [dispatch]);
   useEffect(() => {
-        // TODO instead of this .then you can use useSelector
+    // TODO instead of this .then you can use useSelector
     dispatch(getAvailableCities(country)).then(result => {
       setCities(result.payload.data);
     });
   }, [country, dispatch]);
   useEffect(() => {
-        // TODO instead of this .then you can use useSelector
+    // TODO instead of this .then you can use useSelector
     dispatch(getCoordinates(city)).then(result => {
       setCoordinates(result.payload.data.coordinates);
-      setTourList(result.payload.data.tours)
+      setTourList(result.payload.data.tours);
     });
   }, [city, dispatch]);
   return (
@@ -67,7 +69,10 @@ export default function Destination() {
       </View>
       <View style={styles.list}>
         {tourList.map((l, i) => (
-          <ListItem key={i} bottomDivider>
+          <ListItem
+            key={i}
+            bottomDivider
+            onPress={() => navigation.navigate('Tour', {locationName: l.id})}>
             <Avatar source={Images[l.type]} />
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>

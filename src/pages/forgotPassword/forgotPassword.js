@@ -31,6 +31,7 @@ class ForgotPassword extends Component {
           />
           <Button
             title="Forward"
+            // TODO on press should make something ! Now not doing anything
             onPress={() => {
               this.props.forgotPassword(this.state.email);
             }}
