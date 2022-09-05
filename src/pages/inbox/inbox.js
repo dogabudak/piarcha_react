@@ -24,9 +24,6 @@ const messageList = [
 const Inbox = () => {
   return (
     <View style={styles.page}>
-      <View>
-        <Text>Select your destination</Text>
-      </View>
       <View style={styles.list}>
         {messageList.map((l, i) => (
           <ListItem key={i} bottomDivider>
@@ -42,10 +39,9 @@ const Inbox = () => {
   );
 };
 const styles = StyleSheet.create({
-  container: {
+  page: {
     marginTop: 50,
-    flex: 1,
-    alignItems: 'center',
+    flex: 1
   },
 });
 export default Inbox;

@@ -14,22 +14,13 @@ target 'piarcha_react' do
      installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
             config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '10.0'
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
         end
     end
     end
-  target 'piarcha_reactTests' do
-    inherit! :complete
-  end
   #use_flipper!({ 'Flipper' => '0.87.0' })
    #post_install do |installer|
     #flipper_post_install(installer)
     # __apply_Xcode_12_5_M1_post_install_workaround(installer)
    #end
-end
-
-target 'piarcha_react-tvOS' do
-  target 'piarcha_react-tvOSTests' do
-    inherit! :search_paths
-  end
 end
