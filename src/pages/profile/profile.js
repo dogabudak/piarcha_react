@@ -12,19 +12,28 @@ import SelectPicture from '../../components/utilities/selectPicture';
 import {useForm, Controller} from 'react-hook-form';
 import {setUserInformation, getUserInformation} from '../../redux/user/reducer';
 import {useDispatch, useSelector} from 'react-redux';
+import MultiSelect from "react-native-multiple-select";
+import languages from 'languages-list';
 
+const normalizedLanguages = languages.map((eachLanguage)=>{
+    return {id: eachLanguage, name: eachLanguage}
+})
 export default function Profile() {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
+  const [preferredLanguages, setPreferredLanguages] = useState([]);
   const {firstName, lastName} = useSelector(state => ({
     firstName: state.user.firstName,
     lastName: state.user.lastName,
   }));
+   const onSelectedItemsChange = selectedItems => {
+       setPreferredLanguages(selectedItems);
+    };
   const {control, handleSubmit, errors} = useForm();
   const dispatch = useDispatch();
 
   const onSubmit = async data => {
-    dispatch(setUserInformation(data));
+    dispatch(setUserInformation({...data, preferredLanguages}));
   };
   const showMode = currentMode => {
     setShow(true);
@@ -40,13 +49,16 @@ export default function Profile() {
   // TODO intrested in ? (like coffee, long walks beer etc.)
   // TODO countries you want to visit from the list
   // TODO Privacy
-
+  // TODO User shouldnt be able to open here if he did not logged in
+  // TODO preferred languages, when click outside should close the dropdown
+  // TODO style here is horrible
+   let multiSelect= {}
   return (
     <View>
       <SelectPicture />
       <Controller
         control={control}
-        render={({onChange, onBlur, value}) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             style={styles.formInput}
             onBlur={onBlur}
@@ -56,14 +68,11 @@ export default function Profile() {
           />
         )}
         name="firstName"
-        rules={{required: true}}
         defaultValue={firstName}
       />
-      {errors.firstName && <Text>This is required.</Text>}
-
       <Controller
         control={control}
-        render={({onChange, onBlur, value}) => (
+        render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
             style={styles.formInput}
             onBlur={onBlur}
@@ -73,16 +82,13 @@ export default function Profile() {
           />
         )}
         name="lastName"
-        rules={{required: true}}
         defaultValue={lastName}
       />
-      {errors.lastName && <Text>This is required.</Text>}
       <Controller
         control={control}
         defaultValue={new Date()}
         name="birthdate"
-        rules={{required: true}}
-        render={({onChange, onBlur, value}) =>
+        render={({ field: { onChange, onBlur, value } }) =>
           show && (
             <DateTimePicker
               testID="dateTimePicker"
@@ -99,6 +105,24 @@ export default function Profile() {
         }
       />
       <Button onPress={showDatepicker} title="Show date picker!" />
+        <Controller
+            control={control}
+            defaultValue={''}
+            name="languagesList"
+            render={({ field: { onChange, onBlur, value } }) =>
+                <MultiSelect
+                    items={normalizedLanguages}
+                    uniqueKey="id"
+                    ref={(component) => { multiSelect = component }}
+                    onSelectedItemsChange={onSelectedItemsChange}
+                    selectedItems={preferredLanguages}
+                    selectText="Pick Languages you can speak!"
+                    fixedHeight={ true }
+                    searchInputPlaceholderText="Search Items..."
+                    submitButtonText="Submit"
+                />
+            }
+        />
       <Button title="Update" onPress={handleSubmit(onSubmit)} />
     </View>
   );

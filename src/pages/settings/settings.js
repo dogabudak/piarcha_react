@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-
 import Slider from '@react-native-community/slider';
 
 class settings extends Component {
@@ -9,8 +8,8 @@ class settings extends Component {
     language: 'English',
   };
   render() {
-    return (
-      <View style={styles.item}>
+      return (
+      <View style={styles.page}>
         <Slider
           style={{width: 200, height: 40}}
           minimumValue={0}
@@ -36,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  item: {
+  page: {
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ccc',
