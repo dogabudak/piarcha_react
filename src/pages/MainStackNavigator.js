@@ -14,6 +14,7 @@ import * as React from 'react';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import Friends from "./friends/friends";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,7 @@ function MainStackNavigator() {
         <Stack.Screen name="Destination" component={Destination} />
         <Stack.Screen name="Settings" component={Settings} />
         <Stack.Screen name="Inbox" component={Inbox} />
+        <Stack.Screen name="Friends" component={Friends} />
         <Stack.Screen name="Tour" component={Tour} />
       </Stack.Navigator>
     </NavigationContainer>

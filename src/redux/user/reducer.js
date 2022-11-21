@@ -16,11 +16,16 @@ export const GET_USER = 'GET_USER_LOAD';
 export const GET_USER_LOAD_SUCCESS = 'GET_USER_LOAD_SUCCESS';
 export const GET_USER_LOAD_FAIL = 'GET_USER_LOAD_FAIL';
 
+export const GET_PUBLIC_USER = 'GET_PUBLIC_USER_LOAD';
+export const GET_PUBLIC_USER_LOAD_SUCCESS = 'GET_PUBLIC_USER_LOAD_SUCCESS';
+export const GET_PUBLIC_USER_LOAD_FAIL = 'GET_PUBLIC_USER_LOAD_FAIL';
+
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case SAVE_USER:
     case FORGOT_PASSWORD:
     case REGISTER_USER:
+    case GET_PUBLIC_USER:
     case GET_USER:
       return {...state, loading: true};
     case GET_USER_LOAD_SUCCESS:
@@ -28,8 +33,10 @@ export default function reducer(state = {}, action) {
       return {...state, firstName, lastName, loading: false};
     case SAVE_USER_SUCCESS:
     case FORGOT_PASSWORD_SUCCESS:
+    case GET_PUBLIC_USER_LOAD_SUCCESS:
     case REGISTER_USER_SUCCESS:
       return {...state, loading: false};
+    case GET_PUBLIC_USER_LOAD_FAIL:
     case GET_USER_LOAD_FAIL:
       return {
         ...state,
@@ -111,6 +118,18 @@ export function forgotPassword(email) {
       request: {
         method: 'get',
         url: `/user/${email}`,
+      },
+    },
+  };
+}
+export function getPublicUser(username) {
+  return {
+    type: GET_PUBLIC_USER,
+    payload: {
+      client: 'user',
+      request: {
+        method: 'get',
+        url: `/public-user/${username}`,
       },
     },
   };

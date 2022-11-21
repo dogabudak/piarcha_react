@@ -183,10 +183,10 @@ export const Main = () => {
               },
             },
             {
-              icon: 'map',
-              label: 'Destination',
+              icon: 'human-male-female',
+              label: 'Friends',
               onPress: () => {
-                navigation.navigate('Destination');
+                navigation.navigate('Friends');
               },
             },
             {
@@ -196,6 +196,13 @@ export const Main = () => {
                 navigation.navigate('Profile');
               },
             },
+              {
+                  icon: 'map',
+                  label: 'Destination',
+                  onPress: () => {
+                      navigation.navigate('Destination');
+                  },
+              },
             {
               icon: 'cog',
               label: 'Settings',
