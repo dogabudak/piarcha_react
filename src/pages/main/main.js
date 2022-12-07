@@ -23,8 +23,12 @@ import CustomCallout from './customMarker';
 import getClosestCoordinate from '../../utilities/getClosestCoordinates';
 import Images from '../../images/images';
 import {useNavigation} from '@react-navigation/native';
+import MapViewDirections from 'react-native-maps-directions';
 
 const {height} = Dimensions.get('window');
+
+// TODO find a way to keep this as a secret
+const GOOGLE_MAPS_APIKEY = undefined;
 
 export const Main = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -126,6 +130,18 @@ export const Main = () => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}>
+          <MapViewDirections
+              // TODO this is to create new directions, make it modular with way points if possible
+              origin={{latitude: 41.016664, longitude: 28.922510}}
+              destination={{latitude: 40.893749, longitude: 29.228901}}
+              waypoints={ undefined }
+              apikey={GOOGLE_MAPS_APIKEY}
+              strokeWidth={3}
+              strokeColor="hotpink"
+              onError={(errorMessage) => {
+                   console.log(errorMessage);
+              }}
+          />
         {Markers}
       </MapView>
       <View style={styles.buttons}>

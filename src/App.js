@@ -9,6 +9,7 @@ import reducer from './redux/index';
 import MainStackNavigator from './pages/MainStackNavigator';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
+// TODO you can load these from .env variables depending on the build
 export const store = createStore(
   reducer,
   applyMiddleware(
@@ -18,8 +19,7 @@ export const store = createStore(
           // TODO this is android path, find a better way to handle this shit !
           // baseURL: 'http://10.0.2.2:3019',
           // TODO this is heroku path
-          baseURL: 'https://piarch-a-locations.herokuapp.com/',
-          // baseURL: 'http://localhost:3019',
+          baseURL: 'http://localhost:3019',
           responseType: 'json',
         }),
       },
