@@ -14,13 +14,31 @@ import {
 import {LoginButton, AccessToken} from 'react-native-fbsdk';
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const {height} = Dimensions.get('window');
+const isValidToken = (token) => {
+  // TODO maybe check validation here
+  const [credentials, extras, secret] = token.split('.');
+  return true
+}
 class Start extends Component<> {
   state = {
     username: null,
     password: null,
   };
+  componentDidMount() {
+    AsyncStorage.getItem('@token').then(async (token)=>{
+      if(token){
+        if(isValidToken(token)){
+          this.props.navigation.navigate('Main');
+        }else {
+          await AsyncStorage.removeItem('@token')
+        }
+      }
+    })
+  }
+
   componentDidUpdate() {
     if (this.props.token.login.token) {
       this.props.navigation.navigate('Main');
@@ -36,6 +54,7 @@ class Start extends Component<> {
     try {
       await GoogleSignin.hasPlayServices();
       const userInfo = await GoogleSignin.signIn();
+      // TODO use this userinfo
       console.log(userInfo);
     } catch (error) {
       switch (error.code) {

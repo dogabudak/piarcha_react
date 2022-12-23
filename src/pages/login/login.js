@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
   Button,
@@ -20,7 +21,9 @@ class Login extends Component {
   };
   componentDidUpdate() {
     if (this.props.token.login.token) {
-      this.props.navigation.navigate('Main');
+      AsyncStorage.setItem('@token', this.props.token.login.token).then(()=>{
+        this.props.navigation.navigate('Main');
+      })
     }
   }
   render() {
