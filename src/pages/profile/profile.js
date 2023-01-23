@@ -4,7 +4,7 @@ import {
   Button,
   Platform,
   TextInput,
-  Text,
+  ImageBackground,
   StyleSheet,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -54,7 +54,11 @@ export default function Profile() {
   // TODO style here is horrible
    let multiSelect= {}
   return (
-    <View>
+      <View style={styles.container}>
+        <ImageBackground
+        source={require('../../images/backgrounds/evening.png')}
+        resizeMode="stretch"
+        style={styles.backgroundImage}>
       <SelectPicture />
       <Controller
         control={control}
@@ -124,10 +128,19 @@ export default function Profile() {
             }
         />
       <Button title="Update" onPress={handleSubmit(onSubmit)} />
+        </ImageBackground>
     </View>
   );
 }
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    backgroundImage: {
+        flex: 1,
+        justifyContent: 'center',
+    },
   formInput: {
     height: 50,
     width: 300,
