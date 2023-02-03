@@ -1,10 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 import Images from '../../images/images';
 import {Avatar, ListItem} from 'react-native-elements';
 
 // TODO messages should come from db
 // TODO chatroom endpoints and users are ready in backend, but not here
+// TODO find users should find !
 const messageList = [
   {
     name: 'Your Best Friend',
@@ -36,6 +37,7 @@ const Inbox = () => {
           </ListItem>
         ))}
       </View>
+      <Button title="Find other users " />
     </View>
   );
 };
