@@ -48,11 +48,12 @@
     "@babel/runtime": "^7.16.3",
     "@react-native-community/eslint-config": "^0.0.5",
     "babel-jest": "^24.9.0",
-    "eslint": "^6.5.1",
+    "eslint": "^6.8.0",
+    "eslint-plugin-react": "^7.32.2",
     "invariant": "2.2.4",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.63.0",
-    "piarch-a-interfaces": "1.0.4",
+    "piarch-a-interfaces": "1.0.8",
     "react-native-bundle-visualizer": "2.2.1"
   },
   "jest": {

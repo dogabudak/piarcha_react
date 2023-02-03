@@ -4,20 +4,21 @@ import Images from '../../images/images';
 import {Avatar, ListItem} from 'react-native-elements';
 
 // TODO messages should come from db
+// TODO chatroom endpoints and users are ready in backend, but not here
 const messageList = [
   {
     name: 'Your Best Friend',
-    avatarImage: Images.Hiker,
+    avatarImage: Images.Hike,
     subtitle: 'Hey, how are you',
   },
   {
     name: 'A Girl from somewhere',
-    avatarImage: Images.TrekkingImage,
+    avatarImage: Images.Trekking,
     subtitle: 'Hello',
   },
   {
     name: 'A Guy from somewhere',
-    avatarImage: Images.Bicycle,
+    avatarImage: Images.Bike,
     subtitle: 'Hello',
   },
 ];
