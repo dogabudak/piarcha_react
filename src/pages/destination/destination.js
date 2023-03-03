@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Images from '../../images/images';
 import {ListItem, Avatar} from 'react-native-elements';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {
   getAvailableCountries,
   getAvailableCities,
@@ -19,33 +19,29 @@ const listToPickerItem = listToConvert => {
 export default function Destination() {
   const [country, setCountry] = useState('Turkey');
   const [city, setCity] = useState(null);
-  const [cities, setCities] = useState([]);
-  const [countries, setCountries] = useState([]);
-  const [coordinates, setCoordinates] = useState([]);
-  const [tourList, setTourList] = useState([]);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
-
+  const countries = useSelector(state => state.cityList.availableCountries);
+  const cities = useSelector(state => state.cityList.availableCities);
+  const coordinates = useSelector(state => state.cityList.coordinates);
+  const tourList = useSelector(state => state.cityList.tours);
+  // TODO bu sayfanin UX'i cok kotu bunu duzelt
   useEffect(() => {
-    // TODO instead of this .then you can use useSelector
-    dispatch(getAvailableCountries()).then(result => {
-      setCountries(result.payload.data.countries);
-    });
+    dispatch(getAvailableCountries());
   }, [dispatch]);
   useEffect(() => {
-    // TODO instead of this .then you can use useSelector
-    dispatch(getAvailableCities(country)).then(result => {
-      setCities(result.payload.data);
-    });
-  }, [country, dispatch]);
+    if(countries.length > 0 ){
+      dispatch(getAvailableCities(country))
+    }
+  }, [dispatch, country]);
+
   useEffect(() => {
-    // TODO instead of this .then you can use useSelector
-    dispatch(getCoordinates(city)).then(result => {
-      setCoordinates(result.payload.data.coordinates);
-      setTourList(result.payload.data.tours);
-    });
-  }, [city, dispatch]);
+    if(city){
+      dispatch(getCoordinates(city));
+    }
+  }, [dispatch, cities, city]);
+
   return (
     <View style={styles.page}>
       <View>
@@ -68,7 +64,7 @@ export default function Destination() {
         </View>
       </View>
       <View style={styles.list}>
-        {tourList.map((l, i) => (
+        {tourList?.map((l, i) => (
           <ListItem
             key={i}
             bottomDivider
@@ -82,7 +78,7 @@ export default function Destination() {
         ))}
       </View>
       <View style={styles.list}>
-        {coordinates.map((l, i) => (
+        {coordinates?.map((l, i) => (
           <ListItem key={i} bottomDivider>
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>

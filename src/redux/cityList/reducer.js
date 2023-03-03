@@ -9,13 +9,15 @@ export const GET_AVAILABLE_COUNTRIES_FAIL =
   'GET_AVAILABLE_COUNTRIES_LOAD_SUCCESS';
 
 export const GET_COORDINATES = 'GET_COORDINATES_LOAD';
+export const GET_COORDINATES_SUCCESS = 'GET_COORDINATES_LOAD_SUCCESS';
+export const GET_COORDINATES_FAIL = 'GET_COORDINATES_FAIL';
 
 export const GET_FUTURED_CITIES = 'GET_FUTURED_CITIES_LOAD';
 export const GET_FUTURED_CITIES_SUCCESS = 'GET_FUTURED_CITIES_LOAD_SUCCESS';
 export const GET_FUTURED_CITIES_FAIL = 'GET_FUTURED_CITIES_LOAD_FAIL';
 
 export default function reducer(
-  state = {availableCountries: [], availableCities: [], futuredCities: []},
+  state = {availableCountries: [], availableCities: [], futuredCities: [], coordinates:[], tours:[]},
   action,
 ) {
   switch (action.type) {
@@ -25,13 +27,26 @@ export default function reducer(
       return {
         ...state,
         loading: false,
-        availableCities: action.payload.data.cities,
+        availableCities: action.payload.data,
       };
     case GET_AVAILABLE_CITIES_FAIL:
       return {
         ...state,
         loading: false,
         error: 'Error while fetching available cities',
+      };
+    case GET_COORDINATES_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: 'Error while fetching available cities',
+      };
+    case GET_COORDINATES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        coordinates: action.payload.data.coordinates,
+        tours:action.payload.data.tours,
       };
     case GET_FUTURED_CITIES:
       return {...state, loading: true};
@@ -74,6 +89,7 @@ export function getAvailableCountries() {
   };
 }
 export function getAvailableCities(country) {
+  if(!country) return []
   return {
     type: GET_AVAILABLE_CITIES,
     payload: {
