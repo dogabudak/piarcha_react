@@ -2,11 +2,14 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {getPublicUser} from "../../redux/user/reducer";
 import {useDispatch} from "react-redux";
+import SearchBar from 'react-native-search-bar';
 
-// TODO A search bar from users should be implemented.
+// TODO ===== A search bar from users should be implemented.
 
 const Friends = () => {
     const dispatch = useDispatch();
+    // TODO we should also render an avatar or profile pic or something similar ?
+
     useEffect(() => {
         // TODO this should come from outside
         dispatch(getPublicUser('dogabudak')).then(result => {
@@ -14,9 +17,20 @@ const Friends = () => {
         });
     }, [dispatch])
     const [publicUser, setPublicUser] = useState([]);
-    // TODO we should also render an avatar or profile pic or something similar ?
+    // TODO this search bar is useless
+    const [search, setSearch] = useState('');
+    const searchRef = React.createRef();
+
     return (
     <View style={styles.page}>
+        <SearchBar
+            text={search}
+            ref={searchRef}
+            onChange={e => console.log(e.nativeEvent)}
+            onChangeText={setSearch}
+            onSearchButtonPress={() => searchRef.current.blur()}
+        />
+
         <Text>{publicUser.username}</Text>
         <Text>{publicUser.gender}</Text>
         <Text>{publicUser.birthdate}</Text>
