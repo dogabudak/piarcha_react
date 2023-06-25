@@ -47,7 +47,7 @@ export const Main = () => {
     // TODO instead of this 'then', you can do this in reducer
     // TODO instead of this 'Istanbul', find a solution
     dispatch(getCoordinates('Istanbul')).then(result => {
-      setCoordinates(result.payload.data.coordinates);
+      setCoordinates(result?.payload?.data?.coordinates);
     });
   }, [dispatch]);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);

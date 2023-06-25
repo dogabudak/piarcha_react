@@ -13,7 +13,7 @@ const Friends = () => {
     useEffect(() => {
         // TODO this should come from outside
         dispatch(getPublicUser('dogabudak')).then(result => {
-            setPublicUser(result.payload.data);
+            setPublicUser(result?.payload?.data);
         });
     }, [dispatch])
     const [publicUser, setPublicUser] = useState([]);

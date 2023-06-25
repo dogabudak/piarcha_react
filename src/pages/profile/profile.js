@@ -57,7 +57,7 @@ export default function Profile() {
       <View style={styles.container}>
         <ImageBackground
         source={require('../../images/backgrounds/evening.png')}
-        resizeMode="stretch"
+        resizeMode="cover"
         style={styles.backgroundImage}>
       <SelectPicture />
       <Controller
