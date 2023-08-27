@@ -106,7 +106,7 @@ export const Main = () => {
             }}>
             <Text>{eachCoordinate.name}</Text>
             {Platform.OS === 'ios' && (
-              <CalloutSubview onPress={() => this._panel.show()}>
+              <CalloutSubview onPress={() => this?._panel.show()}>
                 <Text>Details</Text>
               </CalloutSubview>
             )}
@@ -171,7 +171,11 @@ export const Main = () => {
         backdropOpacity={0}
         draggableRange={{top: height / 1.5, bottom: 0}}
         containerStyle={styles.container}
-        ref={c => (this._panel = c)}>
+        ref={c => {
+            if(this){
+                this._panel = c
+            }
+        }}>
         <View style={styles.content}>
           <Text>Here is the content inside panel</Text>
           <Text>Here is the content inside panel</Text>
@@ -246,8 +250,7 @@ export const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column-reverse',
-    height: 650,
-    width: 450,
+    flex:1,
     alignItems: 'center',
   },
   content: {
@@ -258,11 +261,12 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   map: {
+      flex: 2,
     ...StyleSheet.absoluteFillObject,
   },
   buttons: {
     justifyContent: 'flex-end',
-    marginBottom: -100,
+    flex: 3
   },
   callout: {
     width: 140,
