@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {
   View,
-  Button,
   Platform,
   TextInput,
   ImageBackground,
@@ -14,6 +13,7 @@ import {setUserInformation, getUserInformation} from '../../redux/user/reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import MultiSelect from "react-native-multiple-select";
 import languages from 'languages-list';
+import Button from "../../components/viewComponents/pressable";
 
 const normalizedLanguages = languages.map((eachLanguage)=>{
     return {id: eachLanguage, name: eachLanguage}

@@ -1,7 +1,6 @@
 import React, {memo, useCallback, useState, useRef, useEffect} from 'react';
 import {useDispatch} from 'react-redux';
 import {
-  Button,
   Dimensions,
   Platform,
   StyleSheet,
@@ -24,6 +23,7 @@ import getClosestCoordinate from '../../utilities/getClosestCoordinates';
 import Images from '../../images/images';
 import {useNavigation} from '@react-navigation/native';
 import MapViewDirections from 'react-native-maps-directions';
+import Button from "../../components/viewComponents/pressable";
 
 const {height} = Dimensions.get('window');
 

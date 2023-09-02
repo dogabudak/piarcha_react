@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  Button,
   Dimensions,
   StyleSheet,
   View,
@@ -13,6 +12,7 @@ import {
 const {width} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
+import Button from "../../components/viewComponents/pressable";
 
 class Login extends Component {
   state = {

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
 import {
-  Button,
   Dimensions,
   StyleSheet,
   View,
@@ -11,6 +10,7 @@ import {
 
 import {forgotPassword} from '../../redux/user/reducer';
 import {connect} from 'react-redux';
+import Button from "../../components/viewComponents/pressable";
 
 const {width} = Dimensions.get('window');
 class ForgotPassword extends Component {

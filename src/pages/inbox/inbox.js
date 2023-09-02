@@ -1,7 +1,8 @@
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import { StyleSheet, View} from 'react-native';
 import Images from '../../images/images';
 import {Avatar, ListItem} from 'react-native-elements';
+import Button from "../../components/viewComponents/pressable";
 
 // TODO messages should come from db
 // TODO chatroom endpoints and users are ready in backend, but not here

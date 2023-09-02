@@ -4,12 +4,12 @@ import {
   View,
   ImageBackground,
   TextInput,
-  Button,
   StyleSheet,
 } from 'react-native';
 import {useForm, Controller} from 'react-hook-form';
 import {register} from '../../redux/user/reducer';
 import {useDispatch} from 'react-redux';
+import Button from "../../components/viewComponents/pressable";
 
 export default function Register(props) {
   const {control, getValues, handleSubmit, errors} = useForm();

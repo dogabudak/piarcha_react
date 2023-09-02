@@ -5,7 +5,6 @@ import {
   statusCodes,
 } from '@react-native-community/google-signin';
 import {
-  Button,
   ImageBackground,
   Dimensions,
   StyleSheet,
@@ -15,6 +14,7 @@ import {LoginButton, AccessToken} from 'react-native-fbsdk';
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import Button from "../../components/viewComponents/pressable";
 
 const {height} = Dimensions.get('window');
 const isValidToken = (token) => {
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    gap: 10,
   },
   socialLogin: {
     marginTop: 20,
@@ -154,9 +155,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   buttons: {
+    flexDirection:'column',
     alignItems: 'center',
     justifyContent: 'center',
   },
+
 });
 const mapStateToProps = state => {
   return {
