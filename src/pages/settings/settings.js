@@ -1,45 +1,51 @@
-import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useState} from 'react';
+import {View, Switch, StyleSheet} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import Slider from '@react-native-community/slider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-class settings extends Component {
-  state = {
-    language: 'English',
-  };
-  render() {
-      return (
-      <View style={styles.page}>
-        <Slider
-          style={{width: 200, height: 40}}
-          minimumValue={0}
-          maximumValue={100}
-          minimumTrackTintColor="#000000"
-          maximumTrackTintColor="#FFFFFF"
-        />
-        <Picker
-          selectedValue={this.state.language}
-          style={{height: 50, width: 100}}
-          onValueChange={itemValue => this.setState({language: itemValue})}>
-          <Picker.Item label="English" value="english" />
-          <Picker.Item label="Turkish" value="turkish" />
-        </Picker>
-      </View>
+
+export default function Settings() {
+
+    const [isEnabled, setIsEnabled] = useState(false);
+    const [language, setLanguage] = useState('English');
+    const toggleSwitch = async () => {
+        setIsEnabled(previousState => !previousState)
+        await AsyncStorage.setItem('soundToggle', isEnabled)
+    };
+    const setLanguageValue = async (itemValue) => {
+        setLanguage(itemValue);
+        await AsyncStorage.setItem('appLanguage', itemValue)
+    };
+
+    return (
+        <View style={styles.page}>
+            <Switch
+                trackColor={{false: '#767577', true: '#e05d1d'}}
+                thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                ios_backgroundColor="#3e3e3e"
+                onValueChange={toggleSwitch}
+                value={isEnabled}
+            />
+            <Picker
+                selectedValue={language}
+                style={{height: 50, width: 100}}
+                onValueChange={setLanguageValue}>
+                <Picker.Item label="English" value="english"/>
+                <Picker.Item label="Turkish" value="turkish"/>
+            </Picker>
+        </View>
     );
-  }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  page: {
-    padding: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-  },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    page: {
+        padding: 16,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
 });
-
-export default settings;
