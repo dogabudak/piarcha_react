@@ -51,7 +51,7 @@ export const Main = () => {
     });
   }, [dispatch]);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  React.useEffect(() => {
+  useEffect(() => {
     let interval;
     const fetchLocation = async () => {
       interval = setInterval(async () => {

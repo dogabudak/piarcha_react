@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {useState} from 'react';
 
 import {
   Dimensions,
@@ -13,33 +13,30 @@ import {connect} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
 
 const {width} = Dimensions.get('window');
-class ForgotPassword extends Component {
-  state = {
-    email: null,
-  };
-  render() {
-    return (
+function ForgotPassword(props) {
+  const [email, setEmail] = useState(null);
+
+  return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../../images/logo.png')} />
         <View style={styles.buttons}>
           <TextInput
-            style={styles.textInput}
-            onChangeText={text => this.setState({username: text})}
-            placeholder={'Please enter your E-Mail address'}
-            value={this.state.email}
-            maxLength={40}
+              style={styles.textInput}
+              onChangeText={text => setEmail({username: text})}
+              placeholder={'Please enter your E-Mail address'}
+              value={email}
+              maxLength={40}
           />
           <Button
-            title="Forward"
-            // TODO on press should make something ! Now not doing anything
-            onPress={() => {
-              this.props.forgotPassword(this.state.email);
-            }}
+              title="Forward"
+              // TODO on press should make something ! Now not doing anything
+              onPress={() => {
+                props.forgotPassword(email);
+              }}
           />
         </View>
       </View>
-    );
-  }
+  );
 }
 const styles = StyleSheet.create({
   container: {
@@ -63,9 +60,13 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 });
-
+const mapStateToProps = (state) => {
+  return {
+    email: state.email,
+  }
+};
 const mapDispatchToProps = {
   forgotPassword,
 };
 
-export default connect(mapDispatchToProps)(ForgotPassword);
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPassword);

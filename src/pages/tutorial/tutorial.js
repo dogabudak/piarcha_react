@@ -1,42 +1,36 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
-
-class FadeIn extends Component {
-  state = {
-    opacity: new Animated.Value(0),
-  };
-
-  onLoad = () => {
-    Animated.timing(this.state.opacity, {
+function FadeIn(props) {
+  const [opacity, setOpacity] = useState(new Animated.Value(0));
+  const onLoad = () => {
+    Animated.timing(opacity, {
       toValue: 1,
       duration: 500,
       useNativeDriver: true,
     }).start();
   };
-
-  render() {
-    return (
+  return (
       <Animated.Image
-        onLoad={this.onLoad}
-        {...this.props}
-        style={[
-          {
-            opacity: this.state.opacity,
-            transform: [
-              {
-                scale: this.state.opacity.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0.85, 1],
-                }),
-              },
-            ],
-          },
-          this.props.style,
-        ]}
+          onLoad={onLoad}
+          {...props}
+          style={[
+            {
+              opacity: opacity,
+              transform: [
+                {
+                  scale: opacity.interpolate({
+                    inputRange: [0, 1],
+                    outputRange: [0.85, 1],
+                  }),
+                },
+              ],
+            },
+            props.style,
+          ]}
       />
-    );
-  }
+  );
 }
+
 
 const Tutorial = () => (
   <View style={styles.container}>

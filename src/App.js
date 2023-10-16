@@ -50,17 +50,14 @@ const theme = {
     accent: '#f5992c',
   },
 };
-
-export default class App extends Component {
-  render() {
+export default function App() {
     return (
-      <SafeAreaProvider>
-        <Provider store={store}>
-          <PaperProvider theme={theme}>
-            <MainStackNavigator />
-          </PaperProvider>
-        </Provider>
-      </SafeAreaProvider>
+        <SafeAreaProvider>
+            <Provider store={store}>
+                <PaperProvider theme={theme}>
+                    <MainStackNavigator />
+                </PaperProvider>
+            </Provider>
+        </SafeAreaProvider>
     );
-  }
 }

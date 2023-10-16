@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -13,50 +13,47 @@ const {width} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
-
-class Login extends Component {
-  state = {
-    username: null,
-    password: null,
-  };
-  componentDidUpdate() {
-    if (this.props.token.login.token) {
-      AsyncStorage.setItem('@token', this.props.token.login.token).then(()=>{
-        this.props.navigation.navigate('Main');
+import {useNavigation} from "@react-navigation/native";
+function Login(props) {
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const navigation = useNavigation();
+  useEffect(async () => {
+    if(props.token.login.token){
+      AsyncStorage.setItem('@token', props.token.login.token).then(()=>{
+        navigation.navigate('Main');
       })
     }
-  }
-  render() {
-    return (
+  }, [props.token.login.token]);
+  return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../../images/logo.png')} />
         <View style={styles.buttons}>
           <TextInput
-            style={styles.textInput}
-            onChangeText={text => this.setState({username: text})}
-            placeholder={'Username'}
-            value={this.state.username}
-            maxLength={40}
+              style={styles.textInput}
+              onChangeText={text => setUsername(text)}
+              placeholder={'Username'}
+              value={username}
+              maxLength={40}
           />
           <TextInput
-            style={styles.textInput}
-            secureTextEntry={true}
-            onChangeText={text => this.setState({password: text})}
-            placeholder={'Password'}
-            value={this.state.password}
-            maxLength={40}
+              style={styles.textInput}
+              secureTextEntry={true}
+              onChangeText={text => setPassword(text)}
+              placeholder={'Password'}
+              value={password}
+              maxLength={40}
           />
           <Button
-            style={{backgroundColor: 'green'}}
-            title="Login"
-            onPress={() => {
-              this.props.login(this.state.username, this.state.password);
-            }}
+              style={{backgroundColor: 'green'}}
+              title="Login"
+              onPress={() => {
+                props.login(username, password);
+              }}
           />
         </View>
       </View>
-    );
-  }
+  );
 }
 const styles = StyleSheet.create({
   container: {
