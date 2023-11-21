@@ -17,25 +17,22 @@ export const store = createStore(
       destinations: {
         client: axios.create({
           // TODO this is android path, find a better way to handle this shit !
-          // baseURL: 'http://10.0.2.2:3019',
-          // TODO this is heroku path
-          baseURL: 'http://localhost:3019',
+          baseURL: 'http://10.0.2.2:3019',
+          // baseURL: 'http://localhost:3019',
           responseType: 'json',
         }),
       },
       login: {
         client: axios.create({
-          //baseURL: 'http://10.0.2.2:8000',
-          // TODO this is heroku path https://piarch-a-token.herokuapp.com/
-          baseURL: 'http://localhost:8000',
+          baseURL: 'http://10.0.2.2:8000',
+          // baseURL: 'http://localhost:8000',
           responseType: 'json',
         }),
       },
       user: {
         client: axios.create({
-          //baseURL: 'http://10.0.2.2:3020',
-          // TODO this is heroku path https://piarch-a-user.herokuapp.com/
-          baseURL: 'http://localhost:3020',
+          baseURL: 'http://10.0.2.2:3020',
+          // baseURL: 'http://localhost:3020',
           responseType: 'json',
         }),
       },

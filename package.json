@@ -34,6 +34,7 @@
     "react-native-maps-directions": "^1.9.0",
     "react-native-multiple-select": "^0.5.11",
     "react-native-paper": "4.2.0",
+    "react-native-performance-monitor": "^2.0.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "2.7.0",
     "react-native-search-bar": "^3.5.1",

@@ -13,7 +13,7 @@ import {useNavigation} from '@react-navigation/native';
 
 const listToPickerItem = listToConvert => {
   return listToConvert?.map(eachValue => (
-    <Picker.Item label={eachValue} value={eachValue} />
+    <Picker.Item key ={`${eachValue}_destination_list`} label={eachValue} value={eachValue} />
   ));
 };
 export default function Destination() {
@@ -28,7 +28,12 @@ export default function Destination() {
   const tourList = useSelector(state => state.cityList.tours);
   // TODO bu sayfanin UX'i cok kotu bunu duzelt
   useEffect(() => {
-    dispatch(getAvailableCountries());
+    try {
+      dispatch(getAvailableCountries());
+    } catch (e) {
+      // TODO without try catch it doesnt work
+      console.log(e)
+    }
   }, [dispatch]);
   useEffect(() => {
     if(countries.length > 0 ){

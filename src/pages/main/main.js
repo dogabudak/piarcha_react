@@ -76,6 +76,7 @@ export const Main = () => {
     coordinates &&
     coordinates.map(eachCoordinate => (
       <Marker
+        key={eachCoordinate.name}
         coordinate={{
           latitude: eachCoordinate.x,
           longitude: eachCoordinate.y,
