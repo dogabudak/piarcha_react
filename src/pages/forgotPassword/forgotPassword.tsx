@@ -13,16 +13,16 @@ import {connect} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
 
 const {width} = Dimensions.get('window');
-function ForgotPassword(props) {
-  const [email, setEmail] = useState(null);
+function ForgotPassword(props: any) {
+  const [email, setEmail] = useState('');
 
   return (
       <View style={styles.container}>
-        <Image style={styles.logo} source={require('../../images/logo.png')} />
+        <Image source={require('../../images/logo.png')} />
         <View style={styles.buttons}>
           <TextInput
               style={styles.textInput}
-              onChangeText={text => setEmail({username: text})}
+              onChangeText={text => setEmail(text)}
               placeholder={'Please enter your E-Mail address'}
               value={email}
               maxLength={40}
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
   },
 });
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: any) => {
   return {
     email: state.email,
   }

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import {StyleSheet, View} from 'react-native';
 
-export default function CustomCallout(props) {
+export default function CustomCallout(props: any) {
   return (
       <View style={[styles.container]}>
         <View style={styles.bubble}>

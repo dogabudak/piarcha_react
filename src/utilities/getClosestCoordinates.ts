@@ -1,4 +1,6 @@
-export default (originCoordinate, availableCoordinates) => {
+import {Coordinates} from "../../types/coordinates";
+
+export default (originCoordinate: Coordinates, availableCoordinates: Coordinates[]) => {
   return availableCoordinates.reduce((a, b) =>
     Math.sqrt(
       Math.pow(originCoordinate.x - a.x, 2) +

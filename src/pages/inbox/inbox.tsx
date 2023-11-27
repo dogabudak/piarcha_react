@@ -27,9 +27,9 @@ const messageList = [
 const Inbox = () => {
   return (
     <View style={styles.page}>
-      <View style={styles.list}>
+      <View>
         {messageList.map((l, i) => (
-          <ListItem key={i} bottomDivider>
+          <ListItem key={i} bottomDivider hasTVPreferredFocus={undefined} tvParallaxProperties={undefined}>
             <Avatar source={l.avatarImage} />
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>

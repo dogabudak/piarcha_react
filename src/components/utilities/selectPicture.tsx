@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Image, Button} from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 export default function SelectPicture() {
-  const [photo, setPhoto] = useState(undefined);
+  const [photo, setPhoto] = useState({});
     const handleChoosePhoto = () => {
       const options = {
         title: 'Select Avatar',
@@ -32,7 +32,7 @@ export default function SelectPicture() {
             margin: 5,
           }}>
         {photo && (
-            <Image source={this.state.photo} style={{width: 300, height: 300}} />
+            <Image source={photo} style={{width: 300, height: 300}} />
         )}
         <Button title="Choose Photo" onPress={handleChoosePhoto} />
       </View>

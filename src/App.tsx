@@ -36,6 +36,13 @@ export const store = createStore(
           responseType: 'json',
         }),
       },
+        default:{
+            client: axios.create({
+                baseURL: 'http://10.0.2.2:3020',
+                // baseURL: 'http://localhost:3020',
+                responseType: 'json',
+            })
+        }
     }),
   ),
 );

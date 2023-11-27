@@ -11,10 +11,10 @@ import {register} from '../../redux/user/reducer';
 import {useDispatch} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
 
-export default function Register(props) {
-  const {control, getValues, handleSubmit, errors} = useForm();
+export default function Register(props: any) {
+  const {control, getValues, handleSubmit,formState: { errors }} = useForm();
   const dispatch = useDispatch();
-  const onSubmit = async data => {
+  const onSubmit = async (data:any) => {
     if (data.passwordDuplicaiton !== data.password) {
       return;
     }
@@ -30,8 +30,8 @@ export default function Register(props) {
         style={styles.backgroundImage}>
         <Controller
           control={control}
-          render={({onChange, onBlur, value}) => (
-            <TextInput
+          render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
               style={styles.formInput}
               onBlur={onBlur}
               placeholder={'Username or email'}
@@ -48,8 +48,8 @@ export default function Register(props) {
         )}
         <Controller
           control={control}
-          render={({onChange, onBlur, value}) => (
-            <TextInput
+          render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
               style={styles.formInput}
               onBlur={onBlur}
               secureTextEntry={true}
@@ -67,8 +67,8 @@ export default function Register(props) {
         )}
         <Controller
           control={control}
-          render={({onChange, onBlur, value}) => (
-            <TextInput
+          render={({ field: { onChange, onBlur, value } }) => (
+              <TextInput
               style={styles.formInput}
               onBlur={onBlur}
               secureTextEntry={true}

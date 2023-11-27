@@ -1,4 +1,4 @@
-// import * as Interface from 'piarch-a-interfaces';
+//import * as Interface from 'piarch-a-interfaces';
 const churchImage = require('./map/icons/church.png');
 const monumentImage = require('./map/icons/column.png');
 const museumImage = require('./map/icons/museum.png');

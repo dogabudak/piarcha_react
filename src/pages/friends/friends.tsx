@@ -12,11 +12,12 @@ const Friends = () => {
 
     useEffect(() => {
         // TODO this should come from outside
+        // @ts-ignore
         dispatch(getPublicUser('dogabudak')).then(result => {
             setPublicUser(result?.payload?.data);
         });
     }, [dispatch])
-    const [publicUser, setPublicUser] = useState([]);
+    const [publicUser, setPublicUser] = useState({username:'', gender:'', birthdate:''});
     // TODO this search bar is useless
     const [search, setSearch] = useState('');
     const searchRef = React.createRef();
@@ -25,15 +26,17 @@ const Friends = () => {
     <View style={styles.page}>
         <SearchBar
             text={search}
+            // @ts-ignore
             ref={searchRef}
-            onChange={e => console.log(e.nativeEvent)}
+            onChange={e => {}}
             onChangeText={setSearch}
+            // @ts-ignore
             onSearchButtonPress={() => searchRef.current.blur()}
         />
 
-        <Text>{publicUser.username}</Text>
-        <Text>{publicUser.gender}</Text>
-        <Text>{publicUser.birthdate}</Text>
+        <Text>{publicUser?.username}</Text>
+        <Text>{publicUser?.gender}</Text>
+        <Text>{publicUser?.birthdate}</Text>
     </View>
   );
 };

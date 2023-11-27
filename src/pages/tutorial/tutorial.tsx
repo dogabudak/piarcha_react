@@ -1,6 +1,6 @@
 import React, {Component, useState} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
-function FadeIn(props) {
+function FadeIn(props: any) {
   const [opacity, setOpacity] = useState(new Animated.Value(0));
   const onLoad = () => {
     Animated.timing(opacity, {

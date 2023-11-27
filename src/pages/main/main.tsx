@@ -28,12 +28,12 @@ import Button from "../../components/viewComponents/pressable";
 const {height} = Dimensions.get('window');
 
 // TODO find a way to keep this as a secret
-const GOOGLE_MAPS_APIKEY = undefined;
+const GOOGLE_MAPS_APIKEY = '';
 
 export const Main = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLatitute, setCurrentLatitute] = useState('');
-  const [currentLongtitute, setCurrentLongtitute] = useState('');
+  const [currentLatitute, setCurrentLatitute] = useState(0);
+  const [currentLongtitute, setCurrentLongtitute] = useState(0);
   const [coordinates, setCoordinates] = useState([{name: '', x: 0, y: 0}]);
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -46,13 +46,14 @@ export const Main = () => {
   useEffect(() => {
     // TODO instead of this 'then', you can do this in reducer
     // TODO instead of this 'Istanbul', find a solution
-    dispatch(getCoordinates('Istanbul')).then(result => {
+    // @ts-ignore
+      dispatch(getCoordinates('Istanbul')).then(result => {
       setCoordinates(result?.payload?.data?.coordinates);
     });
   }, [dispatch]);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   useEffect(() => {
-    let interval;
+    let interval: any;
     const fetchLocation = async () => {
       interval = setInterval(async () => {
         Geolocation.getCurrentPosition(location => {
@@ -83,6 +84,7 @@ export const Main = () => {
         }}
         calloutOffset={{x: -8, y: 28}}
         calloutAnchor={{x: 0.5, y: 0.4}}
+          // @ts-ignore
         image={Images[eachCoordinate.type]}>
         <Callout
           alphaHitTest
@@ -92,14 +94,17 @@ export const Main = () => {
               navigation.navigate('Settings');
             }
             if (
-              e.nativeEvent.action === 'marker-inside-overlay-press' ||
-              e.nativeEvent.action === 'callout-inside-press'
+                // @ts-ignore
+            e.nativeEvent.action === 'marker-inside-overlay-press' ||
+                // @ts-ignore
+                e.nativeEvent.action === 'callout-inside-press'
             ) {
               return;
             }
           }}
           style={styles.callout}>
           <CustomCallout
+              // @ts-ignore
             onPress={() => {
               if (Platform.OS !== 'ios') {
                 navigation.navigate('LocationDetailsPage');
@@ -107,7 +112,8 @@ export const Main = () => {
             }}>
             <Text>{eachCoordinate.name}</Text>
             {Platform.OS === 'ios' && (
-              <CalloutSubview onPress={() => this?._panel.show()}>
+                // @ts-ignore
+                <CalloutSubview onPress={() => this?._panel.show()}>
                 <Text>Details</Text>
               </CalloutSubview>
             )}
@@ -174,6 +180,7 @@ export const Main = () => {
         containerStyle={styles.container}
         ref={c => {
             if(this){
+                // @ts-ignore
                 this._panel = c
             }
         }}>
@@ -191,7 +198,7 @@ export const Main = () => {
       </SlidingUpPanel>
       <Portal>
         <FAB.Group
-          small
+            visible={isMapReady}
           open={isMenuOpen}
           icon={isMenuOpen ? 'calendar-today' : 'reorder-horizontal'}
           //TODO put this FAB to somewher else

@@ -11,21 +11,21 @@ import {
 } from '../../redux/cityList/reducer';
 import {useNavigation} from '@react-navigation/native';
 
-const listToPickerItem = listToConvert => {
-  return listToConvert?.map(eachValue => (
+const listToPickerItem = (listToConvert: any) => {
+  return listToConvert?.map((eachValue: string) => (
     <Picker.Item key ={`${eachValue}_destination_list`} label={eachValue} value={eachValue} />
   ));
 };
 export default function Destination() {
   const [country, setCountry] = useState('Turkey');
-  const [city, setCity] = useState(null);
+  const [city, setCity] = useState({});
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const countries = useSelector(state => state.cityList.availableCountries);
-  const cities = useSelector(state => state.cityList.availableCities);
-  const coordinates = useSelector(state => state.cityList.coordinates);
-  const tourList = useSelector(state => state.cityList.tours);
+  const countries = useSelector((state: any) => state.cityList.availableCountries);
+  const cities = useSelector((state: any) => state.cityList.availableCities);
+  const coordinates = useSelector((state: any) => state.cityList.coordinates);
+  const tourList = useSelector((state: any) => state.cityList.tours);
   // TODO bu sayfanin UX'i cok kotu bunu duzelt
   useEffect(() => {
     try {
@@ -69,12 +69,17 @@ export default function Destination() {
         </View>
       </View>
       <View style={styles.list}>
-        {tourList?.map((l, i) => (
+        {tourList?.map((l:any, i: any) => (
           <ListItem
-            key={i}
-            bottomDivider
-            onPress={() => navigation.navigate('Tour', {locationName: l.id})}>
-            <Avatar source={Images[l.type]} />
+              key={i}
+              bottomDivider
+              onPress={() => navigation.navigate('Tour', {locationName: l.id})} hasTVPreferredFocus={undefined}
+              tvParallaxProperties={undefined}>
+
+            <Avatar
+                // @ts-ignore
+                source={Images[l.type]}
+            />
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>
               <ListItem.Subtitle>{l.shortDescription}</ListItem.Subtitle>
@@ -83,8 +88,8 @@ export default function Destination() {
         ))}
       </View>
       <View style={styles.list}>
-        {coordinates?.map((l, i) => (
-          <ListItem key={i} bottomDivider>
+        {coordinates?.map((l: any, i: any) => (
+          <ListItem key={i} bottomDivider hasTVPreferredFocus={false} tvParallaxProperties={false}>
             <ListItem.Content>
               <ListItem.Title>{l.name}</ListItem.Title>
               <ListItem.Subtitle>{l.name}</ListItem.Subtitle>

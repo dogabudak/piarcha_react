@@ -12,30 +12,31 @@ import {useForm, Controller} from 'react-hook-form';
 import {setUserInformation, getUserInformation} from '../../redux/user/reducer';
 import {useDispatch, useSelector} from 'react-redux';
 import MultiSelect from "react-native-multiple-select";
+// @ts-ignore
 import languages from 'languages-list';
 import Button from "../../components/viewComponents/pressable";
 
-const normalizedLanguages = languages.map((eachLanguage)=>{
+const normalizedLanguages = languages.map((eachLanguage: string)=>{
     return {id: eachLanguage, name: eachLanguage}
 })
 export default function Profile() {
   const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
   const [preferredLanguages, setPreferredLanguages] = useState([]);
-  const {firstName, lastName} = useSelector(state => ({
+  const {firstName, lastName} = useSelector((state: any) => ({
     firstName: state.user.firstName,
     lastName: state.user.lastName,
   }));
-   const onSelectedItemsChange = selectedItems => {
+   const onSelectedItemsChange = (  selectedItems: any) => {
        setPreferredLanguages(selectedItems);
     };
-  const {control, handleSubmit, errors} = useForm();
+  const {control, handleSubmit} = useForm();
   const dispatch = useDispatch();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data:any) => {
     dispatch(setUserInformation({...data, preferredLanguages}));
   };
-  const showMode = currentMode => {
+  const showMode = (currentMode: string) => {
     setShow(true);
     setMode(currentMode);
   };
@@ -52,7 +53,7 @@ export default function Profile() {
   // TODO User shouldnt be able to open here if he did not logged in
   // TODO preferred languages, when click outside should close the dropdown
   // TODO style here is horrible
-   let multiSelect= {}
+   let multiSelect= null
   return (
       <View style={styles.container}>
         <ImageBackground
@@ -92,20 +93,24 @@ export default function Profile() {
         control={control}
         defaultValue={new Date()}
         name="birthdate"
-        render={({ field: { onChange, onBlur, value } }) =>
-          show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              mode={mode}
-              value={value}
-              is24Hour={true}
-              display="default"
-              onChange={(event, selectedDate) => {
-                setShow(Platform.OS === 'ios');
-                onChange(value);
-              }}
-            />
-          )
+        render={({ field: { onChange, value } }) =>
+            {
+                if (show){
+                        return <DateTimePicker
+                            testID="dateTimePicker"
+                            mode={mode as any}
+                            value={value}
+                            is24Hour={true}
+                            display="default"
+                            onChange={(event: any, selectedDate: any) => {
+                                setShow(Platform.OS === 'ios');
+                                onChange(value);
+                            }}
+                        />
+                } else {
+                    return <></>
+                }
+            }
         }
       />
       <Button onPress={showDatepicker} title="Show date picker!" />

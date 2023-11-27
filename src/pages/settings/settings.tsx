@@ -10,9 +10,9 @@ export default function Settings() {
     const [language, setLanguage] = useState('English');
     const toggleSwitch = async () => {
         setIsEnabled(previousState => !previousState)
-        await AsyncStorage.setItem('soundToggle', isEnabled)
+        await AsyncStorage.setItem('soundToggle', String(isEnabled))
     };
-    const setLanguageValue = async (itemValue) => {
+    const setLanguageValue = async (itemValue:string) => {
         setLanguage(itemValue);
         await AsyncStorage.setItem('appLanguage', itemValue)
     };

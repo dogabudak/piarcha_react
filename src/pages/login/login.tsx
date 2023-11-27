@@ -1,4 +1,4 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
@@ -14,11 +14,11 @@ import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
 import {useNavigation} from "@react-navigation/native";
-function Login(props) {
-  const [username, setUsername] = useState(null);
-  const [password, setPassword] = useState(null);
+function Login(props:any) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  useEffect(async () => {
+  useEffect(() => {
     if(props.token.login.token){
       AsyncStorage.setItem('@token', props.token.login.token).then(()=>{
         navigation.navigate('Main');
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-const mapStateToProps = state => {
+const mapStateToProps = (state :any) => {
   return {
     token: state,
   };
