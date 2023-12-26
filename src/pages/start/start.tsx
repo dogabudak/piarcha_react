@@ -117,7 +117,6 @@ function Start(props:{token: any, login: any}) {
                         onPress={googleSignIn}
                     />
                     <LoginButton
-                        // TODO this looks weird in android
                         onLoginFinished={(error, result) => {
                             if (error) {
                                 console.log('login has error: ' + result.error);
