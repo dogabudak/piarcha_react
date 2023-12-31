@@ -1,7 +1,7 @@
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 
-platform :ios, '13.0'
+platform :ios, '14.0'
 
 target 'piarcha_react' do
   rn_maps_path = '../node_modules/react-native-maps'

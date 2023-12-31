@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.5.0):
-    - AppAuth/Core (= 1.5.0)
-    - AppAuth/ExternalUserAgent (= 1.5.0)
-  - AppAuth/Core (1.5.0)
-  - AppAuth/ExternalUserAgent (1.5.0):
+  - AppAuth (1.6.2):
+    - AppAuth/Core (= 1.6.2)
+    - AppAuth/ExternalUserAgent (= 1.6.2)
+  - AppAuth/Core (1.6.2)
+  - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
   - boost (1.76.0)
   - DoubleConversion (1.1.6)
@@ -78,9 +78,9 @@ PODS:
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GTMAppAuth (1.3.0):
-    - AppAuth/Core (~> 1.4)
-    - GTMSessionFetcher/Core (~> 1.5)
+  - GTMAppAuth (1.3.1):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
   - GTMSessionFetcher/Core (1.7.2)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -315,14 +315,12 @@ PODS:
     - Google-Maps-iOS-Utils (= 4.1.0)
     - GoogleMaps (= 7.0.0)
     - React-Core
-  - react-native-image-picker (3.1.1):
-    - React
+  - react-native-image-picker (2.3.4):
+    - React-Core
   - react-native-maps (1.3.1):
     - React-Core
   - react-native-safe-area-context (3.1.9):
     - React-Core
-  - react-native-slider (3.0.3):
-    - React
   - React-perflogger (0.68.3)
   - React-RCTActionSheet (0.68.3):
     - React-Core/RCTActionSheetHeaders (= 0.68.3)
@@ -406,8 +404,6 @@ PODS:
     - React
   - RNSearchBar (3.5.1):
     - React
-  - RNVectorIcons (7.1.0):
-    - React
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -439,7 +435,6 @@ DEPENDENCIES:
   - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
-  - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -460,7 +455,6 @@ DEPENDENCIES:
   - "RNGoogleSignin (from `../node_modules/@react-native-community/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSearchBar (from `../node_modules/react-native-search-bar`)
-  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -533,8 +527,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
-  react-native-slider:
-    :path: "../node_modules/@react-native-community/slider"
   React-perflogger:
     :path: "../node_modules/react-native/ReactCommon/reactperflogger"
   React-RCTActionSheet:
@@ -575,13 +567,11 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screens"
   RNSearchBar:
     :path: "../node_modules/react-native-search-bar"
-  RNVectorIcons:
-    :path: "../node_modules/react-native-vector-icons"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
   boost: a7c83b31436843459a1961bfd74b96033dc77234
   DoubleConversion: 831926d9b8bf8166fd87886c4abab286c2422662
   FBLazyVector: 34f7420274737b6fcf2e2d9fd42641e66b4436a3
@@ -600,7 +590,7 @@ SPEC CHECKSUMS:
   GoogleMaps: 6e9c923ca035989709fcb5771544fda4cc5fa2a4
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
-  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
+  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
   GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
@@ -620,10 +610,9 @@ SPEC CHECKSUMS:
   react-native-fbsdk: 8e92c7a334fd8d9c2b5d8b8fcd7ae2c314161099
   react-native-geolocation: c956aeb136625c23e0dce0467664af2c437888c9
   react-native-google-maps: 751f1dd2362c09d4ac45b09970d78f138a109268
-  react-native-image-picker: 9ea17b8cae5be829609f66d08b6fcc5dce329b76
+  react-native-image-picker: c6d75c4ab2cf46f9289f341242b219cb3c1180d3
   react-native-maps: f4067ffa5044ade5bf98d6dde15014318a537c2f
   react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
-  react-native-slider: e99fc201cefe81270fc9d81714a7a0f5e566b168
   React-perflogger: fa15d1d29ff7557ee25ea48f7f59e65896fb3215
   React-RCTActionSheet: e83515333352a3cc19c146e3c7a63a8a9269da8f
   React-RCTAnimation: 8032daa2846e3db7ac28c4c5a207d0bfb5e1e3ad
@@ -644,9 +633,8 @@ SPEC CHECKSUMS:
   RNGoogleSignin: a00f87261ea13df9a5cea8deafa6927d6f2c3562
   RNScreens: cf198f915f8a2bf163de94ca9f5bfc8d326c3706
   RNSearchBar: 9860431356b7d12a8449d2fddb2b5f3c78d1e99f
-  RNVectorIcons: bc69e6a278b14842063605de32bec61f0b251a59
   Yoga: 2f6a78c58dcc2963bd8e34d96a4246d9dff2e3a7
 
-PODFILE CHECKSUM: 757640b4794c3c1038d89f553002e8f5b592b64e
+PODFILE CHECKSUM: e2959482f53c47897c17c528de571498b47f4289
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.14.3

@@ -9,6 +9,7 @@
     "start:log:ios": "react-native log-ios",
     "start:log:android": "react-native log-android",
     "build:ios": "cd ./ios && arch -x86_64 pod install",
+    "postinstall": "patch-package",
     "test": "jest",
     "lint": "eslint ."
   },
