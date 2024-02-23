@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View} from 'react-native';
 import Images from '../../images/images';
 import {Avatar, ListItem} from 'react-native-elements';
-import Button from "../../components/viewComponents/pressable";
 
 // TODO messages should come from db
 // TODO chatroom endpoints and users are ready in backend, but not here
@@ -38,7 +37,6 @@ const Inbox = () => {
           </ListItem>
         ))}
       </View>
-      <Button title="Find other users " />
     </View>
   );
 };

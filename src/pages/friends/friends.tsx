@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {getPublicUser} from "../../redux/user/reducer";
-import {useDispatch} from "react-redux";
+import {getPublicUser, searchUser} from "../../redux/user/reducer";
+import {connect, useDispatch} from "react-redux";
 import SearchBar from 'react-native-search-bar';
 import {Avatar, ListItem} from "react-native-elements";
 import Images from "../../images/images";
+import {login} from "../../redux/login/reducer";
 
 // TODO ===== A search bar from users should be implemented.
 
 
 // TODO this is a dummy list, this should be a dynamic list of searched users
-const defaultFriendsList = [
+let defaultFriendsList = [
     {
         username: 'Your Best Friend',
         avatarImage: Images.Hike,
@@ -27,7 +28,8 @@ const defaultFriendsList = [
         details: 'Hello',
     },
 ];
-const Friends = () => {
+
+const Friends = (props: any) => {
     const dispatch = useDispatch();
     // TODO we should also render an avatar or profile pic or something similar ?
 
@@ -36,26 +38,35 @@ const Friends = () => {
         // @ts-ignore
         dispatch(getPublicUser('dogabudak')).then(result => {
             // TODO next line is commented out because real list is not coming from backend
+            // ************************ DO THIS ************************
             // setFriends(result?.payload?.data);
         });
     }, [dispatch])
     const [friends, setFriends] = useState(defaultFriendsList);
-    // TODO this search bar is useless
+    const [users, setUsers] = useState(defaultFriendsList);
     const [search, setSearch] = useState('');
     const searchRef = React.createRef();
-    console.log(friends)
+    const searchFunction = (search: string) => {
+        if(search?.length >4){
+            props.searchUser(search).then((result : any) => {
+                setUsers(result?.payload?.data);
+            })
+        }
+    }
     return (
     <View style={styles.page}>
         <SearchBar
             text={search}
             // @ts-ignore
             ref={searchRef}
-            onChange={e => {}}
-            onChangeText={setSearch}
-            // @ts-ignore
-            onSearchButtonPress={() => searchRef.current.blur()}
+            onChangeText={searchFunction}
+            onSearchButtonPress={(e) => {
+                searchFunction(e);
+                // @ts-ignore
+                searchRef.current.blur()
+            }}
         />
-        {friends.map((l, i) => (
+        {(users || friends).map((l, i) => (
             <ListItem key={i} bottomDivider hasTVPreferredFocus={undefined} tvParallaxProperties={undefined}>
                 <Avatar source={l.avatarImage} />
                 <ListItem.Content>
@@ -83,4 +94,16 @@ const styles = StyleSheet.create({
         letterSpacing: 2,
     },
 });
-export default Friends;
+const mapStateToProps = (state :any) => {
+    return {
+        users: state,
+    };
+};
+const mapDispatchToProps = {
+    searchUser,
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(Friends);

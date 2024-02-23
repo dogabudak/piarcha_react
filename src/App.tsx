@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
-import React, {Component} from 'react';
+import React from 'react';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
 import axios from 'axios';

@@ -20,9 +20,14 @@ export const GET_PUBLIC_USER = 'GET_PUBLIC_USER_LOAD';
 export const GET_PUBLIC_USER_LOAD_SUCCESS = 'GET_PUBLIC_USER_LOAD_SUCCESS';
 export const GET_PUBLIC_USER_LOAD_FAIL = 'GET_PUBLIC_USER_LOAD_FAIL';
 
+export const SEARCH_USER = 'SEARCH_USER_LOAD';
+export const SEARCH_LOAD_SUCCESS = 'SEARCH_LOAD_SUCCESS';
+export const SEARCH_LOAD_FAIL = 'SEARCH_LOAD_FAIL';
+
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case SAVE_USER:
+    case SEARCH_USER:
     case FORGOT_PASSWORD:
     case REGISTER_USER:
     case GET_PUBLIC_USER:
@@ -33,6 +38,7 @@ export default function reducer(state = {}, action) {
       return {...state, firstName, lastName, loading: false};
     case SAVE_USER_SUCCESS:
     case FORGOT_PASSWORD_SUCCESS:
+    case SEARCH_LOAD_SUCCESS:
     case GET_PUBLIC_USER_LOAD_SUCCESS:
     case REGISTER_USER_SUCCESS:
       return {...state, loading: false};
@@ -45,6 +51,7 @@ export default function reducer(state = {}, action) {
       };
     case FORGOT_PASSWORD_FAIL:
     case REGISTER_USER_FAIL:
+    case SEARCH_LOAD_FAIL:
     case SAVE_USER_FAIL:
       return {
         ...state,
@@ -130,6 +137,18 @@ export function getPublicUser(username) {
       request: {
         method: 'get',
         url: `/public-user/${username}`,
+      },
+    },
+  };
+}
+export function searchUser(searchString) {
+  return {
+    type: SEARCH_USER,
+    payload: {
+      client: 'user',
+      request: {
+        method: 'get',
+        url: `/user/search?searchString=${searchString}`,
       },
     },
   };
