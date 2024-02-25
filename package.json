@@ -9,7 +9,6 @@
     "start:log:ios": "react-native log-ios",
     "start:log:android": "react-native log-android",
     "build:ios": "cd ./ios && arch -x86_64 pod install",
-    "postinstall": "patch-package",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -60,7 +59,7 @@
     "invariant": "2.2.4",
     "jest": "^24.9.0",
     "metro-react-native-babel-preset": "^0.63.0",
-    "piarch-a-interfaces": "1.0.8",
+    "piarch-a-interfaces": "1.0.15",
     "react-native-bundle-visualizer": "2.2.1",
     "typescript": "^5.3.2"
   },
