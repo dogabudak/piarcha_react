@@ -38,7 +38,6 @@ const Friends = (props: any) => {
         // @ts-ignore
         dispatch(getPublicUser('dogabudak')).then(result => {
             // TODO next line is commented out because real list is not coming from backend
-            // ************************ DO THIS ************************
             // setFriends(result?.payload?.data);
         });
     }, [dispatch])
@@ -48,6 +47,7 @@ const Friends = (props: any) => {
     const searchRef = React.createRef();
     const searchFunction = (search: string) => {
         if(search?.length >4){
+            // TODO this is a real search, but the results looks ugly
             props.searchUser(search).then((result : any) => {
                 setUsers(result?.payload?.data);
             })
