@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import {
   Dimensions,
   StyleSheet,
@@ -8,12 +7,13 @@ import {
   TextInput,
   Image,
 } from 'react-native';
-
-const {width} = Dimensions.get('window');
 import {login} from '../../redux/login/reducer';
 import {connect} from 'react-redux';
 import Button from "../../components/viewComponents/pressable";
 import {useNavigation} from "@react-navigation/native";
+
+const {width} = Dimensions.get('window');
+
 function Login(props:any) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

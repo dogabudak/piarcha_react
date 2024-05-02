@@ -24,11 +24,16 @@ export const SEARCH_USER = 'SEARCH_USER_LOAD';
 export const SEARCH_LOAD_SUCCESS = 'SEARCH_LOAD_SUCCESS';
 export const SEARCH_LOAD_FAIL = 'SEARCH_LOAD_FAIL';
 
+export const SEARCH_CLOSE_USER = 'SEARCH_CLOSE_USER_LOAD';
+export const SEARCH_CLOSE_LOAD_SUCCESS = 'SEARCH_CLOSE_LOAD_SUCCESS';
+export const SEARCH_CLOSE_LOAD_FAIL = 'SEARCH_CLOSE_LOAD_FAIL';
+
 export default function reducer(state = {}, action) {
   switch (action.type) {
     case SAVE_USER:
     case SEARCH_USER:
     case FORGOT_PASSWORD:
+    case SEARCH_CLOSE_USER:
     case REGISTER_USER:
     case GET_PUBLIC_USER:
     case GET_USER:
@@ -39,6 +44,7 @@ export default function reducer(state = {}, action) {
     case SAVE_USER_SUCCESS:
     case FORGOT_PASSWORD_SUCCESS:
     case SEARCH_LOAD_SUCCESS:
+    case SEARCH_CLOSE_LOAD_SUCCESS:
     case GET_PUBLIC_USER_LOAD_SUCCESS:
     case REGISTER_USER_SUCCESS:
       return {...state, loading: false};
@@ -51,6 +57,7 @@ export default function reducer(state = {}, action) {
       };
     case FORGOT_PASSWORD_FAIL:
     case REGISTER_USER_FAIL:
+    case SEARCH_CLOSE_LOAD_FAIL:
     case SEARCH_LOAD_FAIL:
     case SAVE_USER_FAIL:
       return {
@@ -149,6 +156,18 @@ export function searchUser(searchString) {
       request: {
         method: 'get',
         url: `/user/search?searchString=${searchString}`,
+      },
+    },
+  };
+}
+export function searchClosestUsers() {
+  return {
+    type: SEARCH_USER,
+    payload: {
+      client: 'user',
+      request: {
+        method: 'get',
+        url: '/user/search/closestUsers',
       },
     },
   };

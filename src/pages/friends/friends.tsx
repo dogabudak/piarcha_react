@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {getPublicUser, searchUser} from "../../redux/user/reducer";
+import {StyleSheet, View} from 'react-native';
+import {getPublicUser, searchClosestUsers, searchUser} from "../../redux/user/reducer";
 import {connect, useDispatch} from "react-redux";
 import SearchBar from 'react-native-search-bar';
 import {Avatar, ListItem} from "react-native-elements";
 import Images from "../../images/images";
-import {login} from "../../redux/login/reducer";
+import Button from "../../components/viewComponents/pressable";
 
 // TODO ===== A search bar from users should be implemented.
 
@@ -43,6 +43,7 @@ const Friends = (props: any) => {
     }, [dispatch])
     const [friends, setFriends] = useState(defaultFriendsList);
     const [users, setUsers] = useState(defaultFriendsList);
+    const [closestUsers, setClosestUsers] = useState(defaultFriendsList);
     const [search, setSearch] = useState('');
     const searchRef = React.createRef();
     const searchFunction = (search: string) => {
@@ -52,6 +53,12 @@ const Friends = (props: any) => {
                 setUsers(result?.payload?.data);
             })
         }
+    }
+    const searchClosestUsers= () => {
+        // TODO I actually dont know if this is working or not
+        props.searchClosestUsers().then((result : any) => {
+            setClosestUsers(result?.payload?.data);
+            })
     }
     return (
     <View style={styles.page}>
@@ -66,7 +73,14 @@ const Friends = (props: any) => {
                 searchRef.current.blur()
             }}
         />
-        {(users || friends).map((l, i) => (
+        <Button
+            style={{backgroundColor: 'green'}}
+            title="Find Travel Buddies"
+            onPress={() => {
+                searchClosestUsers();
+            }}
+        />
+        {(users || friends || closestUsers).map((l, i) => (
             <ListItem key={i} bottomDivider hasTVPreferredFocus={undefined} tvParallaxProperties={undefined}>
                 <Avatar source={l.avatarImage} />
                 <ListItem.Content>
@@ -101,6 +115,7 @@ const mapStateToProps = (state :any) => {
 };
 const mapDispatchToProps = {
     searchUser,
+    searchClosestUsers
 };
 
 export default connect(
