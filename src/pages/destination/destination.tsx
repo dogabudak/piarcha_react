@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Images from '../../images/images';
 import {ListItem, Avatar} from 'react-native-elements';
@@ -97,6 +97,10 @@ export default function Destination() {
           </ListItem>
         ))}
       </View>
+      <Button title="Download" onPress={() => {
+        // TODO This should really download something
+        return console.log('Download')
+      }} />
     </View>
   );
 }
