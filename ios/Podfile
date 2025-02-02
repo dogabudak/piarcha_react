@@ -1,3 +1,5 @@
+pod 'GoogleUtilities', :modular_headers => true
+
 # Resolve react_native_pods.rb with node to allow for hoisting
 require Pod::Executable.execute_command('node', ['-p',
   'require.resolve(
@@ -15,6 +17,10 @@ if linkage != nil
 end
 
 target 'piarcha_react' do
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+  pod 'GoogleMaps'
+  pod 'Google-Maps-iOS-Utils'
   config = use_native_modules!
 
   use_react_native!(
