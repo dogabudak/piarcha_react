@@ -10,9 +10,9 @@ import {
     StyleSheet,
     View,
 } from 'react-native';
-import {LoginButton, AccessToken} from 'react-native-fbsdk';
+import {LoginButton, AccessToken} from 'react-native-fbsdk-next';
 import {login} from '../../redux/login/reducer';
-import {connect, useDispatch} from 'react-redux';
+import {connect} from 'react-redux';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Button from "../../components/viewComponents/pressable";
 import {useNavigation} from "@react-navigation/native";

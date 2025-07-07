@@ -16,6 +16,7 @@ const listToPickerItem = (listToConvert: any) => {
     <Picker.Item key ={`${eachValue}_destination_list`} label={eachValue} value={eachValue} />
   ));
 };
+
 export default function Destination() {
   const [country, setCountry] = useState('Turkey');
   const [city, setCity] = useState({});
@@ -26,6 +27,7 @@ export default function Destination() {
   const cities = useSelector((state: any) => state.cityList.availableCities);
   const coordinates = useSelector((state: any) => state.cityList.coordinates);
   const tourList = useSelector((state: any) => state.cityList.tours);
+  
   // TODO bu sayfanin UX'i cok kotu bunu duzelt
   useEffect(() => {
     try {
@@ -35,6 +37,7 @@ export default function Destination() {
       console.log(e)
     }
   }, [dispatch]);
+  
   useEffect(() => {
     if(countries.length > 0 ){
       dispatch(getAvailableCities(country))
@@ -49,78 +52,211 @@ export default function Destination() {
 
   return (
     <View style={styles.page}>
-      <View>
-        <Text>Select your destination</Text>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Select your next destination</Text>
+        <Text style={styles.headerSubtext}>Choose a country and city to explore amazing tours and attractions</Text>
       </View>
-      <View style={styles.locations}>
-        <View style={styles.picker}>
-          <Picker
-            selectedValue={country}
-            onValueChange={itemValue => setCountry(itemValue)}>
-            {listToPickerItem(countries)}
-          </Picker>
+      
+      {/* Location Selection Section */}
+      <View style={styles.locationSection}>
+        <Text style={styles.sectionTitle}>Location</Text>
+        <View style={styles.locations}>
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>Country</Text>
+            <View style={styles.picker}>
+              <Picker
+                selectedValue={country}
+                onValueChange={itemValue => setCountry(itemValue)}
+                style={styles.pickerStyle}>
+                {listToPickerItem(countries)}
+              </Picker>
+            </View>
+          </View>
+          <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>City</Text>
+            <View style={styles.picker}>
+              <Picker
+                selectedValue={city}
+                onValueChange={itemValue => setCity(itemValue)}
+                style={styles.pickerStyle}>
+                {listToPickerItem(cities)}
+              </Picker>
+            </View>
+          </View>
         </View>
-        <View style={styles.picker}>
-          <Picker
-            selectedValue={city}
-            onValueChange={itemValue => setCity(itemValue)}>
-            {listToPickerItem(cities)}
-          </Picker>
+      </View>
+      
+      <View style={styles.listSection}>
+        <Text style={styles.sectionTitle}>Available Tours</Text>
+        <View style={styles.list}>
+          {tourList?.map((l:any, i: any) => (
+            <ListItem
+                key={i}
+                bottomDivider
+                onPress={() => navigation.navigate('Tour', {locationName: l.id})}
+                containerStyle={styles.listItem}>
+              <Avatar
+                  // @ts-ignore
+                  source={Images[l.type]}
+                  size="medium"
+                  rounded
+              />
+              <ListItem.Content>
+                <ListItem.Title style={styles.listItemTitle}>{l.name}</ListItem.Title>
+                <ListItem.Subtitle style={styles.listItemSubtitle}>{l.shortDescription}</ListItem.Subtitle>
+              </ListItem.Content>
+              <ListItem.Chevron color="#007AFF" />
+            </ListItem>
+          ))}
         </View>
       </View>
-      <View style={styles.list}>
-        {tourList?.map((l:any, i: any) => (
-          <ListItem
-              key={i}
-              bottomDivider
-              onPress={() => navigation.navigate('Tour', {locationName: l.id})} hasTVPreferredFocus={undefined}
-              tvParallaxProperties={undefined}>
-
-            <Avatar
-                // @ts-ignore
-                source={Images[l.type]}
-            />
-            <ListItem.Content>
-              <ListItem.Title>{l.name}</ListItem.Title>
-              <ListItem.Subtitle>{l.shortDescription}</ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
-        ))}
+      
+      <View style={styles.listSection}>
+        <Text style={styles.sectionTitle}>Local Attractions</Text>
+        <View style={styles.list}>
+          {coordinates?.map((l: any, i: any) => (
+            <ListItem key={i} bottomDivider containerStyle={styles.listItem}>
+              <ListItem.Content>
+                <ListItem.Title style={styles.listItemTitle}>{l.name}</ListItem.Title>
+                <ListItem.Subtitle style={styles.listItemSubtitle}>{l.name}</ListItem.Subtitle>
+              </ListItem.Content>
+            </ListItem>
+          ))}
+        </View>
       </View>
-      <View style={styles.list}>
-        {coordinates?.map((l: any, i: any) => (
-          <ListItem key={i} bottomDivider hasTVPreferredFocus={false} tvParallaxProperties={false}>
-            <ListItem.Content>
-              <ListItem.Title>{l.name}</ListItem.Title>
-              <ListItem.Subtitle>{l.name}</ListItem.Subtitle>
-            </ListItem.Content>
-          </ListItem>
-        ))}
+      <View style={styles.buttonContainer}>
+        <Button 
+          title="Download Guide" 
+          onPress={() => {
+            // TODO This should really download something
+            return console.log('Download')
+          }}
+          color="#007AFF"
+        />
       </View>
-      <Button title="Download" onPress={() => {
-        // TODO This should really download something
-        return console.log('Download')
-      }} />
     </View>
   );
 }
+
 const styles = StyleSheet.create({
-  locations: {
+  page: {
     flex: 1,
+    backgroundColor: '#f8f9fa',
+  },
+  header: {
+    padding: 24,
+    backgroundColor: '#ffffff',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e9ecef',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  headerText: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: '#1a1a1a',
+    marginBottom: 8,
+  },
+  headerSubtext: {
+    fontSize: 16,
+    textAlign: 'center',
+    color: '#666',
+    lineHeight: 22,
+  },
+  locationSection: {
+    backgroundColor: '#ffffff',
+    margin: 16,
+    borderRadius: 12,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#1a1a1a',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  locations: {
     flexDirection: 'row',
-    padding: 16,
-    flexShrink: 2,
+    gap: 12,
+  },
+  pickerContainer: {
+    flex: 1,
+  },
+  pickerLabel: {
+    fontSize: 14,
+    fontWeight: '500',
+    color: '#666',
+    marginBottom: 8,
+    textAlign: 'center',
   },
   picker: {
-    flex: 1,
+    borderWidth: 1,
+    borderColor: '#e1e5e9',
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.05,
+    shadowRadius: 1,
+    elevation: 1,
+  },
+  pickerStyle: {
+    height: 50,
+  },
+  listSection: {
+    backgroundColor: '#ffffff',
+    margin: 16,
+    marginTop: 8,
+    borderRadius: 12,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2.22,
+    elevation: 3,
   },
   list: {
     flex: 1,
-    flexGrow: 3,
   },
-  page: {
-    flexDirection: 'column',
-    flexWrap: 'wrap',
-    flex: 1,
+  listItem: {
+    borderRadius: 8,
+    marginVertical: 2,
+    backgroundColor: '#fafafa',
+  },
+  listItemTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#1a1a1a',
+  },
+  listItemSubtitle: {
+    fontSize: 14,
+    color: '#666',
+    marginTop: 2,
+  },
+  buttonContainer: {
+    margin: 16,
+    marginTop: 8,
   },
 });
