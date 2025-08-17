@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn --version)",
+      "Bash(node:*)",
+      "Bash(npx react-native:*)",
+      "Bash(yarn install)",
+      "Bash(yarn add:*)",
+      "Bash(chmod:*)",
+      "Bash(yarn remove:*)",
+      "Bash(rm:*)",
+      "Bash(sudo rm:*)",
+      "Bash(pod install:*)",
+      "Bash(yarn ios)",
+      "Bash(mkdir:*)",
+      "Bash(yarn start:*)",
+      "Bash(open ios/piarcha_react.xcworkspace)",
+      "Bash(open:*)",
+      "Bash(yarn ios:*)",
+      "Bash(ls:*)",
+      "Bash(sudo chown:*)",
+      "Bash(xcrun simctl list:*)",
+      "Bash(xcrun simctl spawn:*)",
+      "Bash(curl:*)",
+      "Bash(true)",
+      "Bash(killall:*)",
+      "Bash(xcodebuild clean:*)",
+      "Bash(npm:*)"
+    ],
+    "deny": []
+  }
+}

@@ -1,26 +1,13 @@
 platform :ios, '15.1'
-
-use_modular_headers!
+use_frameworks! :linkage => :static  # ⬅️ replace use_modular_headers!
 
 require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
+  'require.resolve("react-native/scripts/react_native_pods.rb", {paths: [process.argv[1]]})',
+  __dir__]).strip
 
 prepare_react_native_project!
 
 target 'piarcha_react' do
-  rn_maps_path = '../node_modules/react-native-maps'
-  pod 'react-native-google-maps', :path => rn_maps_path
-  pod 'GoogleMaps', :modular_headers => true
-  pod 'Google-Maps-iOS-Utils', :modular_headers => true
-
-  # Firebase pods
-  pod 'FirebaseCore', :modular_headers => true
-  pod 'FirebaseCoreInternal', :modular_headers => true
-  pod 'FirebaseAnalytics', :modular_headers => true # add any other Firebase modules you use
-
   config = use_native_modules!
 
   use_react_native!(
@@ -29,17 +16,17 @@ target 'piarcha_react' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  rn_maps_path = '../node_modules/react-native-maps'
+  pod 'react-native-google-maps', :path => rn_maps_path
+
+  # Only these two need modular headers:
+  pod 'GoogleMaps', :modular_headers => true
+  pod 'Google-Maps-iOS-Utils', :modular_headers => true
+
   post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1'
-        config.build_settings['CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES'] = 'YES'
-      end
+    react_native_post_install(installer, config[:reactNativePath], :mac_catalyst_enabled => false)
+    installer.pods_project.targets.each do |t|
+      t.build_configurations.each { |c| c.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '15.1' }
     end
-    react_native_post_install(
-      installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-    )
   end
 end
